@@ -70,31 +70,33 @@ main{flex:1;min-width:0;}
 .search::placeholder{color:var(--faint);}
 
 /* THREADS */
-.thread{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:1rem 1.2rem;margin-bottom:0.6rem;transition:all 0.15s;}
+.thread{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:1.2rem 1.4rem;margin-bottom:0.6rem;transition:border-color 0.15s;}
 .thread:hover{border-color:var(--red);}
-.thread-cat{font-size:0.58rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;}
-.thread-text{font-size:0.9rem;font-weight:400;color:var(--dark);line-height:1.6;margin-bottom:0.8rem;}
-.thread-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.thread-cat{font-size:0.58rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.5rem;}
+.thread-text{font-size:0.9rem;font-weight:400;color:var(--dark);line-height:1.6;margin-bottom:1rem;}
+.thread-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;margin-bottom:1rem;}
 .thread-meta{font-size:0.68rem;color:var(--faint);}
-.thread-actions{display:flex;align-items:center;gap:0.8rem;}
-.like-btn{display:flex;align-items:center;gap:0.3rem;font-size:0.72rem;color:var(--muted);cursor:pointer;padding:0.2rem 0.5rem;border-radius:2px;transition:all 0.15s;border:1px solid transparent;}
+.thread-actions{display:flex;align-items:center;gap:0.5rem;}
+.like-btn{display:flex;align-items:center;gap:0.3rem;font-size:0.75rem;color:var(--muted);cursor:pointer;padding:0.25rem 0.6rem;border-radius:2px;transition:all 0.15s;border:1px solid var(--border);background:var(--bg);}
 .like-btn:hover{color:var(--red);border-color:var(--red);}
-.like-btn.liked{color:var(--red);border-color:var(--red);}
-.comment-toggle{font-size:0.72rem;color:var(--muted);cursor:pointer;padding:0.2rem 0.5rem;border-radius:2px;border:1px solid transparent;transition:all 0.15s;}
-.comment-toggle:hover{color:var(--dark);border-color:var(--border);}
+.like-btn.liked{color:var(--red);border-color:var(--red);background:rgba(255,75,51,0.05);}
+.show-comments-btn{font-size:0.75rem;color:var(--muted);cursor:pointer;padding:0.25rem 0.6rem;border-radius:2px;border:1px solid var(--border);background:var(--bg);font-family:'DM Sans',sans-serif;transition:all 0.15s;display:flex;align-items:center;gap:0.3rem;}
+.show-comments-btn:hover{color:var(--dark);border-color:var(--dark);}
 
-/* COMMENTS */
-.comments-section{margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--surface);display:none;}
+/* ALWAYS VISIBLE REPLY ROW */
+.reply-row{display:flex;gap:0.5rem;border-top:1px solid var(--surface);padding-top:0.9rem;}
+.reply-input{flex:1;padding:0.45rem 0.8rem;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.82rem;color:var(--dark);outline:none;background:var(--bg);transition:border-color 0.15s;}
+.reply-input:focus{border-color:var(--red);background:white;}
+.reply-input::placeholder{color:var(--faint);}
+.reply-submit{padding:0.45rem 0.9rem;background:var(--dark);color:white;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;flex-shrink:0;}
+.reply-submit:hover{background:var(--red);}
+
+/* COMMENTS LIST */
+.comments-section{margin-bottom:0.8rem;display:none;}
 .comments-section.open{display:block;}
-.comment{padding:0.6rem 0;border-bottom:1px solid var(--surface);font-size:0.82rem;color:var(--mid);line-height:1.5;}
-.comment:last-of-type{border-bottom:none;}
-.comment-meta{font-size:0.65rem;color:var(--faint);margin-bottom:0.2rem;}
-.comment-form{display:flex;gap:0.5rem;margin-top:0.8rem;}
-.comment-input{flex:1;padding:0.4rem 0.7rem;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--dark);outline:none;background:white;}
-.comment-input:focus{border-color:var(--red);}
-.comment-input::placeholder{color:var(--faint);}
-.comment-submit{padding:0.4rem 0.8rem;background:var(--dark);color:white;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
-.comment-submit:hover{background:var(--red);}
+.comment{padding:0.5rem 0;border-bottom:1px solid var(--surface);font-size:0.82rem;color:var(--mid);line-height:1.5;}
+.comment:last-child{border-bottom:none;padding-bottom:0;}
+.comment-meta{font-size:0.65rem;color:var(--faint);margin-bottom:0.15rem;}
 
 .empty{text-align:center;padding:4rem 0;color:var(--muted);}
 .empty-icon{font-size:1.4rem;margin-bottom:0.6rem;}
@@ -314,17 +316,17 @@ function renderThreads() {
           <button class="like-btn ${hasLiked(t.id)?'liked':''}" onclick="likeThread('${t.id}',${t.likes})">
             ♥ <span id="likes-${t.id}">${t.likes}</span>
           </button>
-          <button class="comment-toggle" onclick="toggleComments('${t.id}')">
-            💬 <span id="ccount-${t.id}">${t.comments?.[0]?.count||0}</span>
+          <button class="show-comments-btn" onclick="toggleComments('${t.id}')">
+            💬 <span id="ccount-${t.id}">${t.comments?.[0]?.count||0}</span> ${(t.comments?.[0]?.count||0)===1?'comment':'comments'}
           </button>
         </div>
       </div>
       <div class="comments-section" id="comments-${t.id}">
-        <div id="comments-list-${t.id}" class="loading" style="font-size:0.8rem">Loading...</div>
-        <div class="comment-form">
-          <input class="comment-input" id="comment-input-${t.id}" placeholder="Add a comment anonymously..." onkeydown="if(event.key==='Enter')submitComment('${t.id}')"/>
-          <button class="comment-submit" onclick="submitComment('${t.id}')">Reply</button>
-        </div>
+        <div id="comments-list-${t.id}"></div>
+      </div>
+      <div class="reply-row">
+        <input class="reply-input" id="comment-input-${t.id}" placeholder="Reply anonymously..." onkeydown="if(event.key==='Enter')submitComment('${t.id}')"/>
+        <button class="reply-submit" onclick="submitComment('${t.id}')">Reply</button>
       </div>
     </div>
   `).join('');
@@ -356,14 +358,14 @@ async function loadComments(threadId) {
   const el = document.getElementById('comments-list-' + threadId);
   try {
     const comments = await api(`comments?thread_id=eq.${threadId}&order=created_at.asc`);
-    if (comments.length === 0) { el.innerHTML = '<div style="font-size:0.8rem;color:var(--faint);padding:0.4rem 0">No comments yet — be the first.</div>'; return; }
+    if (comments.length === 0) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--faint);padding:0.3rem 0 0.6rem">No replies yet.</div>'; return; }
     el.innerHTML = comments.map(c => `
       <div class="comment">
         <div class="comment-meta">Anonymous · ${timeAgo(c.created_at)}</div>
         ${escHtml(c.text)}
       </div>
     `).join('');
-  } catch(e) { el.innerHTML = '<div style="font-size:0.8rem;color:var(--faint)">Could not load comments.</div>'; }
+  } catch(e) { el.innerHTML = '<div style="font-size:0.78rem;color:var(--faint)">Could not load replies.</div>'; }
 }
 
 async function submitComment(threadId) {
@@ -372,17 +374,17 @@ async function submitComment(threadId) {
   if (!text) return;
   input.value = '';
   input.disabled = true;
+  input.placeholder = 'Posting...';
   try {
     await api('comments', 'POST', { thread_id: threadId, text, anon_id: getAnonId() });
+    const section = document.getElementById('comments-' + threadId);
+    section.classList.add('open');
     await loadComments(threadId);
-    // update comment count
-    const t = allThreads.find(x => x.id === threadId);
-    if (t) {
-      const count = parseInt(document.getElementById('ccount-' + threadId).textContent) + 1;
-      document.getElementById('ccount-' + threadId).textContent = count;
-    }
-  } catch(e) { alert('Could not post comment. Please try again.'); }
+    const count = parseInt(document.getElementById('ccount-' + threadId).textContent) + 1;
+    document.getElementById('ccount-' + threadId).textContent = count;
+  } catch(e) { alert('Could not post reply. Please try again.'); }
   input.disabled = false;
+  input.placeholder = 'Reply anonymously...';
 }
 
 async function postThread() {
