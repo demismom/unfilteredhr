@@ -126,7 +126,7 @@ textarea, input { font-family: var(--font-body); }
 .hero { padding: 40px 0 32px; }
 .hero__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.25fr 1fr;
   gap: 36px;
   align-items: center;
 }
@@ -311,7 +311,7 @@ textarea, input { font-family: var(--font-body); }
 }
 
 /* PLAYBOOKS */
-.playbooks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
+.playbooks-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; align-items: start; }
 .playbook-card {
   background: var(--white);
   border: 1px solid var(--border);
@@ -358,7 +358,7 @@ textarea, input { font-family: var(--font-body); }
 .page-hero__title em { font-style: italic; color: var(--red); }
 .page-hero__sub { font-size: 0.875rem; color: var(--grey-3); max-width: 460px; font-weight: 300; }
 
-.community-layout { display: grid; grid-template-columns: 220px 1fr; gap: 20px; align-items: start; padding-bottom: 72px; }
+.community-layout { display: grid; grid-template-columns: 260px 1fr; gap: 28px; align-items: start; padding-bottom: 72px; }
 .sidebar { position: sticky; top: 68px; display: flex; flex-direction: column; gap: 12px; }
 .sidebar-card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
 .sidebar-card__header { padding: 10px 14px; border-bottom: 1px solid var(--border); font-family: var(--font-display); font-weight: 700; font-size: 0.76rem; color: var(--grey-1); }
