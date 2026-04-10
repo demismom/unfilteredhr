@@ -10,7 +10,6 @@
 </head>
 <body>
 
-<!-- ── NAV ── -->
 <nav class="nav">
   <div class="container nav__inner">
     <a href="index.html" class="nav__logo">Unfiltered<span>HR</span></a>
@@ -20,31 +19,21 @@
       <li><a href="#">Playbooks</a></li>
       <li><a href="#">The HR Files</a></li>
       <li><a href="#">Newsletter</a></li>
-      <li><a class="soon" href="#">HR Tech</a></li>
+      <li><span class="soon">HR Tech ✦</span></li>
     </ul>
     <div class="nav__cta">
-      <a href="community.html" class="btn btn--primary">Post anonymously ↗</a>
+      <a href="community.html" class="btn--primary">Post anonymously ↗</a>
     </div>
   </div>
 </nav>
 
-<!-- ── HERO ── -->
 <section class="hero">
   <div class="container">
     <div class="hero__inner">
-
-      <!-- Left -->
       <div class="fade-up">
-        <div class="hero__badge">
-          <span>✦</span> For the people behind the people
-        </div>
-        <h1 class="hero__headline">
-          You've seen things.
-          <em>We get it.</em>
-        </h1>
-        <p class="hero__sub">
-          Share what works, admit what doesn't, and swap stories you couldn't make up. Real talk, best practices, and a community that supports one another.
-        </p>
+        <div class="hero__badge">✦ For the people behind the people</div>
+        <h1 class="hero__headline">You've seen things.<em>We get it.</em></h1>
+        <p class="hero__sub">Share what works, admit what doesn't, and swap stories you couldn't make up. Real talk, best practices, and a community that supports one another.</p>
         <div class="trust-signals">
           <div class="trust-signal"><span class="trust-dot"></span> Anonymous posting</div>
           <div class="trust-signal"><span class="trust-dot"></span> Practitioners only</div>
@@ -52,13 +41,11 @@
           <div class="trust-signal"><span class="trust-dot"></span> Free to join</div>
         </div>
       </div>
-
-      <!-- Right — Ask Box -->
       <div class="fade-up fade-up-2">
         <div class="ask-box">
           <span class="ask-box__label">Ask the Community</span>
           <textarea placeholder="What's on your mind? Ask anything — no dumb questions here..."></textarea>
-          <div class="pill-group" style="margin-bottom: 16px;">
+          <div class="pill-group">
             <button class="pill active" onclick="selectPill(this)">Talent</button>
             <button class="pill" onclick="selectPill(this)">D&I</button>
             <button class="pill" onclick="selectPill(this)">Culture</button>
@@ -70,75 +57,33 @@
           </div>
           <div class="ask-box__footer">
             <span class="ask-box__note">🔒 Post anonymously — your identity is always your choice</span>
-            <button class="btn btn--primary">Post ↗</button>
+            <button class="btn--primary" style="font-size:0.75rem;padding:6px 14px">Post ↗</button>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
-<!-- ── DOMAIN GRID ── -->
-<section class="section--tight">
+<section class="section">
   <div class="container">
-    <div class="section-header fade-up">
+    <div class="section-header">
       <h2 class="section-title">Browse by domain</h2>
     </div>
-    <div class="domain-grid fade-up fade-up-1">
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">🎯</span>
-        <div class="domain-card__name">Talent Attraction &amp; Acquisition</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">🌍</span>
-        <div class="domain-card__name">Diversity &amp; Inclusion</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">🏡</span>
-        <div class="domain-card__name">Culture</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">💡</span>
-        <div class="domain-card__name">Employee Engagement &amp; Retention</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">🧭</span>
-        <div class="domain-card__name">Leadership</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">♟️</span>
-        <div class="domain-card__name">Talent Strategy</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">📚</span>
-        <div class="domain-card__name">Learning &amp; Development</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">⚙️</span>
-        <div class="domain-card__name">HR Operations</div>
-      </div>
-
-      <div class="domain-card" onclick="window.location='community.html'">
-        <span class="domain-card__icon">💻</span>
-        <div class="domain-card__name">People Technology</div>
-      </div>
-
+    <div class="domain-grid">
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">🎯</span><div class="domain-card__name">Talent Attraction &amp; Acquisition</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">🌍</span><div class="domain-card__name">Diversity &amp; Inclusion</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">🏡</span><div class="domain-card__name">Culture</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">💡</span><div class="domain-card__name">Employee Engagement &amp; Retention</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">🧭</span><div class="domain-card__name">Leadership</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">♟️</span><div class="domain-card__name">Talent Strategy</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">📚</span><div class="domain-card__name">Learning &amp; Development</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">⚙️</span><div class="domain-card__name">HR Operations</div></div>
+      <div class="domain-card" onclick="window.location='community.html'"><span class="domain-card__icon">💻</span><div class="domain-card__name">People Technology</div></div>
     </div>
   </div>
 </section>
 
-
-
-<!-- ── HR FILES ── -->
 <section class="section">
   <div class="container">
     <div class="hr-files-header">
@@ -147,47 +92,30 @@
         <div class="hr-files-header__title">The HR Files</div>
         <div class="hr-files-header__sub">Anonymous submissions. Because some things you just have to say out loud.</div>
       </div>
-      <a href="#" class="btn btn--white-outline">Submit yours ↗</a>
+      <button class="btn--white-outline">Submit yours ↗</button>
     </div>
-
     <div class="hr-files-stories">
-      <div style="text-align:center; padding: 52px 0; color: var(--grey-3);">
-        <div style="font-size: 2rem; margin-bottom: 14px;">📁</div>
-        <div style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--grey-2); margin-bottom: 8px;">No submissions yet — be the first.</div>
-        <div style="font-size: 0.875rem; font-weight: 300;">Something you just have to say out loud? Submit it anonymously.</div>
-      </div>
+      <div style="font-size:1.6rem;margin-bottom:10px;">📁</div>
+      <div style="font-family:var(--font-display);font-weight:700;font-size:0.875rem;color:var(--grey-2);margin-bottom:6px;">No submissions yet — be the first.</div>
+      <div style="font-size:0.8rem;font-weight:300;">Something you just have to say out loud? Submit it anonymously.</div>
     </div>
   </div>
 </section>
 
-<!-- ── PLAYBOOKS ── -->
-<section class="section--tight">
+<section class="section">
   <div class="container">
     <div class="section-header">
       <h2 class="section-title">Practitioner playbooks</h2>
-      <a href="#" class="btn btn--outline">View all →</a>
+      <a href="#" class="btn--outline">View all →</a>
     </div>
     <div class="playbooks-grid">
-      <div class="playbook-card">
-        <span class="playbook-card__icon">📊</span>
-        <div class="playbook-card__name">Engagement Survey Question Bank</div>
-        <div class="playbook-card__price">$29</div>
-      </div>
-      <div class="playbook-card">
-        <span class="playbook-card__icon">🗺️</span>
-        <div class="playbook-card__name">Engagement Practitioner Guide</div>
-        <div class="playbook-card__price">$49</div>
-      </div>
-      <div class="playbook-card">
-        <span class="playbook-card__icon">🧰</span>
-        <div class="playbook-card__name">Culture Onboarding Toolkit</div>
-        <div class="playbook-card__price">$39</div>
-      </div>
+      <div class="playbook-card"><span class="playbook-card__icon">📊</span><div class="playbook-card__name">Engagement Survey Question Bank</div><div class="playbook-card__price">$29</div></div>
+      <div class="playbook-card"><span class="playbook-card__icon">🗺️</span><div class="playbook-card__name">Engagement Practitioner Guide</div><div class="playbook-card__price">$49</div></div>
+      <div class="playbook-card"><span class="playbook-card__icon">🧰</span><div class="playbook-card__name">Culture Onboarding Toolkit</div><div class="playbook-card__price">$39</div></div>
     </div>
   </div>
 </section>
 
-<!-- ── NEWSLETTER ── -->
 <section class="section">
   <div class="container">
     <div class="newsletter-bar">
@@ -196,14 +124,13 @@
         <div class="newsletter-bar__sub">Biweekly. No fluff. Hot takes and field notes from the EX trenches.</div>
       </div>
       <div class="newsletter-bar__form">
-        <input type="email" placeholder="your@email.com" />
-        <button class="btn--nl">Subscribe</button>
+        <input type="email" placeholder="your@email.com" id="nl-email" />
+        <button class="btn--nl" onclick="nlSub()">Subscribe</button>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
 <footer>
   <div class="container footer__inner">
     <div class="footer__logo">Unfiltered<span>HR</span></div>
