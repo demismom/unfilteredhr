@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>The HR Files — UnfilteredHR</title>
+<meta name="description" content="Anonymous submissions from HR practitioners. Because some things you just have to say out loud."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#FF4B33;--bg:#FAF9F7;--white:#FFFFFF;--dark:#1A1A1A;--mid:#555555;--muted:#999999;--faint:#CCCCCC;--border:#E8E6E2;--surface:#F4F2EF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--dark);font-family:'DM Sans',sans-serif;font-weight:400;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;gap:0.5rem;flex-wrap:wrap;}
+.logo{font-family:'DM Sans',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;color:var(--dark);}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:0.5rem;align-items:center;}
+.nav-btn{padding:0.4rem 0.9rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.2s;background:none;border:1px solid var(--border);color:var(--mid);text-decoration:none;display:inline-block;}
+.nav-btn:hover{border-color:var(--red);color:var(--red);}
+.nav-btn--fill{background:var(--red);color:white;border-color:var(--red);font-weight:600;}
+.nav-btn--fill:hover{background:#e63d26;border-color:#e63d26;color:white;}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:20px;height:2px;background:var(--dark);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;gap:0.4rem;width:100%;padding-top:0.6rem;border-top:1px solid var(--border);}
+.mobile-menu.open{display:flex;}
+.mobile-menu .nav-btn{text-align:center;width:100%;}
+
+/* PAGE HERO */
+.page-hero{background:var(--red);padding:3rem 2rem;}
+.page-hero-inner{max-width:1100px;margin:0 auto;}
+.hero-eyebrow{font-size:0.62rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:rgba(255,255,255,0.6);margin-bottom:0.6rem;}
+.hero-title{font-family:'DM Sans',sans-serif;font-size:clamp(2rem,4vw,3rem);font-weight:700;color:white;letter-spacing:-0.02em;line-height:1.05;margin-bottom:0.6rem;}
+.hero-sub{font-size:0.9rem;color:rgba(255,255,255,0.75);font-weight:400;max-width:500px;}
+
+/* MAIN LAYOUT */
+.main-wrap{flex:1;max-width:1100px;margin:0 auto;padding:2.5rem 2rem 4rem;width:100%;}
+.layout{display:flex;gap:2rem;align-items:flex-start;}
+
+/* SUBMIT FORM */
+.submit-col{width:320px;flex-shrink:0;position:sticky;top:80px;}
+.form-card{background:white;border:1px solid var(--border);border-radius:2px;padding:1.4rem;}
+.form-title{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark);margin-bottom:1rem;}
+.form-group{margin-bottom:0.9rem;}
+.form-label{font-size:0.72rem;font-weight:600;color:var(--mid);display:block;margin-bottom:0.35rem;letter-spacing:0.04em;}
+.form-input{width:100%;padding:0.5rem 0.7rem;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--dark);outline:none;background:var(--bg);transition:border-color 0.15s;}
+.form-input:focus{border-color:var(--red);background:white;}
+.form-input::placeholder{color:var(--faint);}
+textarea.form-input{resize:none;height:120px;line-height:1.6;}
+.form-note{font-size:0.68rem;color:var(--faint);margin-top:0.9rem;line-height:1.5;}
+.submit-btn{width:100%;padding:0.65rem;background:var(--red);color:white;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;transition:background 0.2s;margin-top:1rem;}
+.submit-btn:hover{background:#e63d26;}
+.submit-success{text-align:center;padding:1rem;font-size:0.85rem;color:var(--mid);display:none;}
+.submit-success strong{display:block;font-size:1rem;color:var(--dark);margin-bottom:0.3rem;}
+
+/* PILLS */
+.pills{display:flex;flex-wrap:wrap;gap:0.35rem;margin-top:0.35rem;}
+.pill{font-size:0.68rem;padding:0.25rem 0.7rem;border-radius:2px;border:1px solid var(--border);background:var(--white);color:var(--mid);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
+.pill:hover{border-color:var(--red);color:var(--red);}
+.pill.on{background:var(--red);border-color:var(--red);color:white;}
+
+/* STORIES */
+.stories-col{flex:1;min-width:0;}
+.stories-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem;}
+.stories-title{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.story-count{font-size:0.72rem;color:var(--faint);}
+.story{display:flex;gap:1.2rem;padding:1.4rem 0;border-bottom:1px solid var(--border);transition:all 0.15s;}
+.story:first-child{border-top:1px solid var(--border);}
+.story-num{font-family:'DM Sans',sans-serif;font-size:2.2rem;font-weight:700;color:var(--surface);line-height:1;flex-shrink:0;width:40px;text-align:center;}
+.story-content{flex:1;min-width:0;}
+.story-meta{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);margin-bottom:0.5rem;}
+.story-text{font-style:italic;font-size:0.9rem;color:var(--dark);line-height:1.7;margin-bottom:0.8rem;}
+.story-foot{display:flex;align-items:center;gap:0.8rem;flex-wrap:wrap;}
+.react-btn{font-size:0.75rem;color:var(--red);font-weight:500;cursor:pointer;border:1px solid rgba(255,75,51,0.2);background:rgba(255,75,51,0.05);border-radius:2px;font-family:'DM Sans',sans-serif;padding:0.25rem 0.6rem;transition:all 0.15s;}
+.react-btn:hover{background:rgba(255,75,51,0.1);}
+.react-btn.reacted{opacity:0.5;pointer-events:none;}
+.story-cat{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint);}
+.empty{text-align:center;padding:4rem 0;color:var(--muted);}
+.empty-icon{font-size:1.6rem;margin-bottom:0.8rem;}
+.empty-title{font-size:0.9rem;font-weight:500;color:var(--mid);margin-bottom:0.4rem;}
+.empty-sub{font-size:0.82rem;}
+.loading{text-align:center;padding:2rem 0;color:var(--faint);font-size:0.85rem;}
+
+footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:auto;}
+.foot-logo{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;}
+.foot-logo span{color:var(--red);}
+.foot-nav{display:flex;gap:1.2rem;list-style:none;font-size:0.7rem;font-weight:500;color:rgba(242,236,224,0.5);}
+.foot-nav a:hover{color:var(--red);}
+.foot-copy{font-size:0.65rem;color:rgba(242,236,224,0.35);}
+
+@media(max-width:760px){.nav-links{display:none;}.hamburger{display:flex;}}
+@media(max-width:700px){.layout{flex-direction:column;}.submit-col{width:100%;position:static;}}
+@media(max-width:560px){nav{padding:0.8rem 1rem;flex-wrap:wrap;}.page-hero{padding:2rem 1rem;}.main-wrap{padding:1.5rem 1rem 3rem;}footer{flex-direction:column;align-items:flex-start;gap:0.8rem;padding:1.2rem 1rem;}.foot-nav{flex-wrap:wrap;gap:0.6rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Unfiltered<span>HR</span></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="community.html">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="#">Playbooks</a>
+    <a class="nav-btn" href="hr-files.html" style="color:var(--red);border-color:var(--red)">The HR Files</a>
+    <a class="nav-btn nav-btn--fill" href="community.html">Post anonymously ↗</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="nav-btn" href="community.html">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="#">Playbooks</a>
+    <a class="nav-btn" href="hr-files.html">The HR Files</a>
+    <a class="nav-btn nav-btn--fill" href="community.html">Post anonymously ↗</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="hero-eyebrow">You would not believe</div>
+    <h1 class="hero-title">The HR Files</h1>
+    <p class="hero-sub">Anonymous submissions from the people behind the people. Because some things you just have to say out loud.</p>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="layout">
+
+    <!-- SUBMIT FORM -->
+    <aside class="submit-col">
+      <div class="form-card" id="form-card">
+        <div class="form-title">Submit your story</div>
+
+        <div class="form-group">
+          <label class="form-label">Your story *</label>
+          <textarea class="form-input" id="story-text" placeholder="Something happened. Say it out loud..."></textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Your role <span style="color:var(--faint);font-weight:400">(optional)</span></label>
+          <input class="form-input" id="story-role" type="text" placeholder="e.g. HRBP, Head of People..."/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Industry <span style="color:var(--faint);font-weight:400">(optional)</span></label>
+          <input class="form-input" id="story-industry" type="text" placeholder="e.g. Tech, Healthcare..."/>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Category <span style="color:var(--faint);font-weight:400">(optional)</span></label>
+          <div class="pills">
+            <button class="pill" onclick="p(this)">Culture</button>
+            <button class="pill" onclick="p(this)">Leadership</button>
+            <button class="pill" onclick="p(this)">D&I</button>
+            <button class="pill" onclick="p(this)">Engagement</button>
+            <button class="pill" onclick="p(this)">Talent</button>
+            <button class="pill" onclick="p(this)">HR Ops</button>
+          </div>
+        </div>
+
+        <button class="submit-btn" onclick="submitStory()">Submit anonymously ↗</button>
+        <div class="form-note">🔒 Completely anonymous. No account, no email, no tracking. Your story, your call.</div>
+      </div>
+      <div class="submit-success" id="submit-success">
+        <strong>Thank you. ❤️</strong>
+        Someone needed to hear that. Your story has been submitted.
+        <br><br>
+        <button class="nav-btn" onclick="resetForm()" style="margin:0 auto;display:block">Submit another</button>
+      </div>
+    </aside>
+
+    <!-- STORIES -->
+    <div class="stories-col">
+      <div class="stories-head">
+        <div class="stories-title">All submissions</div>
+        <div class="story-count" id="story-count"></div>
+      </div>
+      <div id="stories-list"><div class="loading">Loading stories...</div></div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">Unfiltered<span>HR</span></div>
+  <ul class="foot-nav">
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#">The Journal</a></li>
+    <li><a href="#">Playbooks</a></li>
+    <li><a href="hr-files.html">The HR Files</a></li>
+    <li><a href="#">Newsletter</a></li>
+  </ul>
+  <div class="foot-copy">For the people behind the people · © 2026 UnfilteredHR</div>
+</footer>
+
+<script>
+const SUPA_URL = 'https://wtqrutlsidjmtxohkhvv.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0cXJ1dGxzaWRqbXR4b2hraHZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MTgwMjMsImV4cCI6MjA5MTM5NDAyM30.t6tp-r2aRTpQRWzydR3x8IsRmnqUIjbEL4qcryy2hb0';
+const HEADERS = {'Content-Type':'application/json','apikey':SUPA_KEY,'Authorization':'Bearer '+SUPA_KEY};
+
+function getAnonId(){let id=localStorage.getItem('uhr_anon_id');if(!id){id='anon_'+Math.random().toString(36).slice(2,10);localStorage.setItem('uhr_anon_id',id);}return id;}
+function getReactions(){return JSON.parse(localStorage.getItem('uhr_reactions')||'[]');}
+function hasReacted(id){return getReactions().includes(id);}
+function addReaction(id){const r=getReactions();if(!r.includes(id)){r.push(id);localStorage.setItem('uhr_reactions',JSON.stringify(r));}}
+function escHtml(s){return s?s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'):''}
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+function p(el){el.closest('.pills').querySelectorAll('.pill').forEach(x=>x.classList.remove('on'));el.classList.add('on');}
+
+async function loadStories() {
+  try {
+    const res = await fetch(SUPA_URL + '/rest/v1/hr_files?select=*&order=created_at.desc', {headers:HEADERS});
+    const stories = await res.json();
+    const list = document.getElementById('stories-list');
+    const countEl = document.getElementById('story-count');
+    countEl.textContent = stories.length + ' ' + (stories.length === 1 ? 'story' : 'stories');
+    if (!stories.length) {
+      list.innerHTML = '<div class="empty"><div class="empty-icon">📁</div><div class="empty-title">No submissions yet.</div><div class="empty-sub">Be the first to say it out loud.</div></div>';
+      return;
+    }
+    list.innerHTML = stories.map((s,i) => `
+      <div class="story">
+        <div class="story-num">${i+1}</div>
+        <div class="story-content">
+          <div class="story-meta">Anonymous${s.role?' · '+escHtml(s.role):''}${s.industry?' · '+escHtml(s.industry):''}</div>
+          <div class="story-text">"${escHtml(s.story)}"</div>
+          <div class="story-foot">
+            <button class="react-btn ${hasReacted(s.id)?'reacted':''}" id="react-${s.id}" onclick="reactToStory('${s.id}',${s.reactions},this)">❤️ ${s.reactions.toLocaleString()} felt this</button>
+            ${s.category?`<span class="story-cat">${escHtml(s.category)}</span>`:''}
+          </div>
+        </div>
+      </div>
+    `).join('');
+  } catch(e) {
+    document.getElementById('stories-list').innerHTML = '<div class="empty"><div class="empty-icon">⚠️</div><div class="empty-title">Could not load stories.</div><div class="empty-sub">Please try again later.</div></div>';
+  }
+}
+
+async function reactToStory(id, current, btn) {
+  if (hasReacted(id)) return;
+  addReaction(id);
+  btn.classList.add('reacted');
+  const newCount = current + 1;
+  btn.textContent = '❤️ ' + newCount.toLocaleString() + ' felt this';
+  try {
+    await fetch(SUPA_URL + '/rest/v1/hr_files?id=eq.' + id, {
+      method: 'PATCH', headers: HEADERS,
+      body: JSON.stringify({reactions: newCount})
+    });
+  } catch(e) { console.error('Reaction failed', e); }
+}
+
+async function submitStory() {
+  const story = document.getElementById('story-text').value.trim();
+  if (!story) { document.getElementById('story-text').focus(); document.getElementById('story-text').style.borderColor = 'var(--red)'; return; }
+  const role = document.getElementById('story-role').value.trim();
+  const industry = document.getElementById('story-industry').value.trim();
+  const cat = document.querySelector('.submit-col .pill.on');
+  const category = cat ? cat.textContent : null;
+  const btn = document.querySelector('.submit-btn');
+  btn.textContent = 'Submitting...';
+  btn.disabled = true;
+  try {
+    await fetch(SUPA_URL + '/rest/v1/hr_files', {
+      method: 'POST', headers: {...HEADERS, 'Prefer':'return=representation'},
+      body: JSON.stringify({story, role:role||null, industry:industry||null, category, anon_id:getAnonId(), reactions:0})
+    });
+    document.getElementById('form-card').style.display = 'none';
+    document.getElementById('submit-success').style.display = 'block';
+    await loadStories();
+  } catch(e) {
+    alert('Could not submit. Please try again.');
+    btn.textContent = 'Submit anonymously ↗';
+    btn.disabled = false;
+  }
+}
+
+function resetForm() {
+  document.getElementById('story-text').value = '';
+  document.getElementById('story-role').value = '';
+  document.getElementById('story-industry').value = '';
+  document.querySelectorAll('.submit-col .pill').forEach(p => p.classList.remove('on'));
+  document.getElementById('form-card').style.display = 'block';
+  document.getElementById('submit-success').style.display = 'none';
+  document.querySelector('.submit-btn').textContent = 'Submit anonymously ↗';
+  document.querySelector('.submit-btn').disabled = false;
+}
+
+loadStories();
+</script>
+</body>
+</html>
