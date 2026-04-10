@@ -111,7 +111,7 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
       <p class="hero-sub">Share what works, admit what doesn't, and swap stories you couldn't make up. Real talk, best practices, and a community that supports one another.</p>
       <div class="trust">
         <div class="trust-item"><span class="trust-dot"></span>Anonymous posting</div>
-        <div class="trust-item"><span class="trust-dot"></span>Practitioners only</div>
+        <div class="trust-item"><span class="trust-dot"></span>HR for HR</div>
         <div class="trust-item"><span class="trust-dot"></span>No judgment</div>
         <div class="trust-item"><span class="trust-dot"></span>Free to join</div>
       </div>
@@ -121,18 +121,19 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
         <span class="ask-label">Ask the Community</span>
         <textarea placeholder="What's on your mind? Ask anything — no dumb questions here..."></textarea>
         <div class="pills">
-          <button class="pill on" onclick="p(this)">Talent</button>
+          <button class="pill on" onclick="p(this)">Talent Acquisition</button>
           <button class="pill" onclick="p(this)">D&I</button>
           <button class="pill" onclick="p(this)">Culture</button>
           <button class="pill" onclick="p(this)">Engagement</button>
           <button class="pill" onclick="p(this)">Leadership</button>
+          <button class="pill" onclick="p(this)">Talent Strategy</button>
           <button class="pill" onclick="p(this)">L&D</button>
-          <button class="pill" onclick="p(this)">Ops</button>
-          <button class="pill" onclick="p(this)">Tech</button>
+          <button class="pill" onclick="p(this)">HR Ops</button>
+          <button class="pill" onclick="p(this)">People Tech</button>
         </div>
         <div class="ask-foot">
           <span class="ask-note">🔒 Always anonymous</span>
-          <button class="nav-btn nav-btn--fill" style="font-size:0.7rem">Post ↗</button>
+          <button class="nav-btn nav-btn--fill" style="font-size:0.7rem" onclick="postThread()">Post ↗</button>
         </div>
       </div>
     </div>
@@ -140,18 +141,6 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
 </div>
 
 <div class="main-wrap">
-  <div class="sec-head"><div class="sec-title">Browse by domain</div></div>
-  <div class="domain-grid">
-    <a class="domain-card" href="community.html"><span class="d-icon">🎯</span><div class="d-name">Talent Attraction &amp; Acquisition</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">🌍</span><div class="d-name">Diversity &amp; Inclusion</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">🏡</span><div class="d-name">Culture</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">💡</span><div class="d-name">Employee Engagement &amp; Retention</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">🧭</span><div class="d-name">Leadership</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">♟️</span><div class="d-name">Talent Strategy</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">📚</span><div class="d-name">Learning &amp; Development</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">⚙️</span><div class="d-name">HR Operations</div></a>
-    <a class="domain-card" href="community.html"><span class="d-icon">💻</span><div class="d-name">People Technology</div></a>
-  </div>
 
   <div class="hr-head">
     <div>
@@ -181,8 +170,8 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
 <div class="nl-wrap">
   <div class="nl-inner">
     <div class="nl-eyebrow">The Unfiltered Dispatch</div>
-    <div class="nl-title">No fluff in your inbox</div>
-    <p class="nl-sub">Biweekly hot takes and field notes from the EX trenches. Never overwhelming.</p>
+    <div class="nl-title">Join our newsletter</div>
+    <p class="nl-sub">Biweekly. Real talk from the HR trenches — what's working, what isn't, and what no one else is saying out loud.</p>
     <div class="nl-form">
       <input class="nl-input" type="email" placeholder="your@email.com" id="nl-in"/>
       <button class="nl-btn" onclick="sub()">Subscribe</button>
@@ -205,6 +194,16 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
 <script>
 function p(el){el.closest('.pills').querySelectorAll('.pill').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
 function sub(){const i=document.getElementById('nl-in');if(i&&i.value.includes('@')){const b=i.nextElementSibling;b.textContent='✓ You\'re in!';i.value='';b.style.background='#aaa';b.style.pointerEvents='none'}}
+function postThread(){
+  const text=document.querySelector('.ask-box textarea').value.trim();
+  if(!text){alert('Please write something first!');return;}
+  const cat=document.querySelector('.pill.on');
+  const category=cat?cat.textContent:'General';
+  const threads=JSON.parse(localStorage.getItem('uhr_threads')||'[]');
+  threads.unshift({id:Date.now(),text,category,time:new Date().toISOString()});
+  localStorage.setItem('uhr_threads',JSON.stringify(threads));
+  window.location.href='community.html';
+}
 </script>
 </body>
 </html>
