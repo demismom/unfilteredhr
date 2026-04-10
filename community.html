@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Community — UnfilteredHR</title>
+  <meta name="description" content="Join the honest conversation HR has been missing. Ask freely, share openly, always anonymously." />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="nav">
+  <div class="container nav__inner">
+    <a href="index.html" class="nav__logo">Unfiltered<span>HR</span></a>
+    <ul class="nav__links">
+      <li><a href="community.html" style="color:var(--red); font-weight:500;">Community</a></li>
+      <li><a href="#">The Journal</a></li>
+      <li><a href="#">Playbooks</a></li>
+      <li><a href="#">The HR Files</a></li>
+      <li><a href="#">Newsletter</a></li>
+      <li><a class="soon" href="#">HR Tech</a></li>
+    </ul>
+    <div class="nav__cta">
+      <a href="#post-form" class="btn btn--primary">Post anonymously ↗</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero__inner">
+      <div class="fade-up">
+        <div class="page-hero__eyebrow">Community</div>
+        <h1 class="page-hero__title">
+          The honest conversation<br>
+          <em>HR has been missing.</em>
+        </h1>
+        <p class="page-hero__sub">
+          No accounts. No profiles. Just practitioners telling the truth — anonymously, always.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MAIN LAYOUT ── -->
+<div class="container" style="padding-bottom: 80px;">
+  <div class="community-layout">
+
+    <!-- ── SIDEBAR ── -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-card__header">Domains</div>
+        <div class="domain-nav-item active" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">🔥</span>
+          <span class="domain-nav-item__name">All domains</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">🎯</span>
+          <span class="domain-nav-item__name">Talent Acquisition</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">🌍</span>
+          <span class="domain-nav-item__name">Diversity &amp; Inclusion</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">🏡</span>
+          <span class="domain-nav-item__name">Culture</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">💡</span>
+          <span class="domain-nav-item__name">Engagement &amp; Retention</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">🧭</span>
+          <span class="domain-nav-item__name">Leadership</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">♟️</span>
+          <span class="domain-nav-item__name">Talent Strategy</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">📚</span>
+          <span class="domain-nav-item__name">Learning &amp; Dev</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">⚙️</span>
+          <span class="domain-nav-item__name">HR Operations</span>
+        </div>
+        <div class="domain-nav-item" onclick="selectDomain(this)">
+          <span class="domain-nav-item__icon">💻</span>
+          <span class="domain-nav-item__name">People Technology</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ── MAIN CONTENT ── -->
+    <main>
+
+      <!-- Post form -->
+      <div id="post-form" class="ask-box" style="margin-bottom: 28px;">
+        <div class="ask-box__header">
+          <span class="ask-box__label">Start a Thread</span>
+          <span class="ask-box__note">🔒 Always anonymous</span>
+        </div>
+        <textarea placeholder="What's on your mind? Ask anything — no dumb questions here..."></textarea>
+        <div class="pill-group" style="margin-bottom: 16px;">
+          <button class="pill active" onclick="selectPill(this)">Talent</button>
+          <button class="pill" onclick="selectPill(this)">D&I</button>
+          <button class="pill" onclick="selectPill(this)">Culture</button>
+          <button class="pill" onclick="selectPill(this)">Engagement</button>
+          <button class="pill" onclick="selectPill(this)">Leadership</button>
+          <button class="pill" onclick="selectPill(this)">L&D</button>
+          <button class="pill" onclick="selectPill(this)">Ops</button>
+          <button class="pill" onclick="selectPill(this)">Tech</button>
+        </div>
+        <div class="ask-box__footer">
+          <span></span>
+          <button class="btn btn--primary">Post thread ↗</button>
+        </div>
+      </div>
+
+      <!-- Filter row -->
+      <div class="filter-row" style="margin-bottom: 20px;">
+        <div class="filter-tabs">
+          <div class="filter-tab active" onclick="switchTab(this)">Recent</div>
+          <div class="filter-tab" onclick="switchTab(this)">Hot</div>
+          <div class="filter-tab" onclick="switchTab(this)">Unanswered</div>
+        </div>
+        <input type="text" class="search-input" placeholder="Search threads..." />
+      </div>
+
+      <!-- Empty state -->
+      <div style="text-align:center; padding: 64px 0; color: var(--grey-3);">
+        <div style="font-size: 2rem; margin-bottom: 14px;">💬</div>
+        <div style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--grey-2); margin-bottom: 8px;">No threads yet — be the first.</div>
+        <div style="font-size: 0.875rem; font-weight: 300;">Ask something real. Someone out there has been through it too.</div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="container footer__inner">
+    <div class="footer__logo">Unfiltered<span>HR</span></div>
+    <ul class="footer__nav">
+      <li><a href="community.html">Community</a></li>
+      <li><a href="#">The Journal</a></li>
+      <li><a href="#">Playbooks</a></li>
+      <li><a href="#">The HR Files</a></li>
+      <li><a href="#">Newsletter</a></li>
+    </ul>
+    <div class="footer__copy">For the people behind the people · © 2026 UnfilteredHR</div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
