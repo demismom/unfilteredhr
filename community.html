@@ -1,164 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Community — UnfilteredHR</title>
-  <meta name="description" content="Join the honest conversation HR has been missing. Ask freely, share openly, always anonymously." />
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔥</text></svg>" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Community — UnfilteredHR</title>
+<meta name="description" content="No accounts. No profiles. Just practitioners telling the truth — anonymously, always."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet"/>
+<style>
+:root{--red:#FF4B33;--bg:#FAF9F7;--white:#FFFFFF;--dark:#1A1A1A;--mid:#555555;--muted:#999999;--faint:#CCCCCC;--border:#E8E6E2;--surface:#F4F2EF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--dark);font-family:'DM Sans',sans-serif;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;gap:0.5rem;flex-wrap:wrap;}
+.logo{font-family:'Syne',sans-serif;font-size:1.2rem;letter-spacing:-0.02em;color:var(--dark);}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:0.5rem;align-items:center;}
+.nav-btn{padding:0.4rem 0.9rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.2s;background:none;border:1px solid var(--border);color:var(--mid);text-decoration:none;display:inline-block;}
+.nav-btn:hover{border-color:var(--red);color:var(--red);}
+.nav-btn--fill{background:var(--red);color:white;border-color:var(--red);}
+.nav-btn--fill:hover{background:#e63d26;border-color:#e63d26;color:white;}
+.soon{color:var(--faint);font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;}
+.page-hero{padding:2.5rem 2rem 2rem;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;width:100%;}
+.eyebrow{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:0.7rem;}
+.page-title{font-family:'Syne',sans-serif;font-size:clamp(1.6rem,3vw,2.2rem);letter-spacing:-0.02em;line-height:1.1;margin-bottom:0.6rem;}
+.page-title em{font-style:italic;color:var(--red);}
+.page-sub{font-size:0.88rem;color:var(--muted);line-height:1.6;}
+.main-wrap{flex:1;max-width:1100px;margin:0 auto;padding:2rem 2rem 4rem;width:100%;}
+.layout{display:flex;gap:1.75rem;align-items:flex-start;}
+.sidebar{width:260px;flex-shrink:0;position:sticky;top:70px;}
+.sb-card{background:var(--white);border:1px solid var(--border);border-radius:2px;overflow:hidden;}
+.sb-head{padding:0.6rem 1rem;border-bottom:1px solid var(--border);font-family:'Syne',sans-serif;font-size:0.72rem;letter-spacing:0.05em;color:var(--dark);}
+.dn{display:flex;align-items:center;gap:0.5rem;padding:0.55rem 1rem;cursor:pointer;transition:all 0.15s;font-size:0.78rem;color:var(--mid);border-bottom:1px solid var(--surface);}
+.dn:last-child{border-bottom:none;}
+.dn:hover{background:var(--surface);}
+.dn.on{background:rgba(255,75,51,0.07);color:var(--red);}
+.dn-icon{font-size:0.85rem;flex-shrink:0;}
+main{flex:1;min-width:0;}
+.ask-box{background:var(--white);border:1.5px solid var(--red);border-radius:2px;padding:1.1rem;box-shadow:0 0 0 3px rgba(255,75,51,0.06);margin-bottom:1.2rem;}
+.ask-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:0.6rem;}
+.ask-label{font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);}
+.ask-note{font-size:0.68rem;color:var(--faint);}
+.ask-box textarea{width:100%;border:none;outline:none;resize:none;font-size:0.88rem;color:var(--dark);font-family:'DM Sans',sans-serif;line-height:1.6;height:80px;background:transparent;display:block;margin-bottom:0.7rem;}
+.ask-box textarea::placeholder{color:var(--faint);}
+.pills{display:flex;flex-wrap:wrap;gap:0.35rem;margin-bottom:0.8rem;}
+.pill{font-size:0.68rem;padding:0.25rem 0.7rem;border-radius:2px;border:1px solid var(--border);background:var(--white);color:var(--mid);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
+.pill:hover{border-color:var(--red);color:var(--red);}
+.pill.on{background:var(--red);border-color:var(--red);color:white;}
+.ask-foot{display:flex;justify-content:flex-end;}
+.filter-row{display:flex;align-items:center;justify-content:space-between;gap:0.8rem;margin-bottom:1.2rem;}
+.tabs{display:flex;gap:0.25rem;background:var(--surface);border-radius:2px;padding:0.2rem;}
+.tab{font-size:0.72rem;padding:0.3rem 0.8rem;border-radius:2px;color:var(--muted);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
+.tab.on{background:white;color:var(--dark);box-shadow:0 1px 3px rgba(0,0,0,0.07);}
+.search{padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:2px;font-size:0.78rem;color:var(--dark);background:white;outline:none;width:160px;font-family:'DM Sans',sans-serif;transition:border-color 0.15s;}
+.search:focus{border-color:var(--red);}
+.search::placeholder{color:var(--faint);}
+.empty{text-align:center;padding:4rem 0;color:var(--muted);}
+.empty-icon{font-size:1.4rem;margin-bottom:0.6rem;}
+.empty-title{font-family:'Syne',sans-serif;font-size:0.85rem;color:var(--mid);margin-bottom:0.3rem;}
+.empty-sub{font-size:0.8rem;}
+footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:auto;}
+.foot-logo{font-family:'Syne',sans-serif;font-size:1rem;letter-spacing:-0.01em;}
+.foot-logo span{color:var(--red);}
+.foot-nav{display:flex;gap:1.2rem;list-style:none;font-size:0.7rem;color:rgba(242,236,224,0.5);letter-spacing:0.06em;}
+.foot-nav a:hover{color:var(--red);}
+.foot-copy{font-size:0.65rem;color:rgba(242,236,224,0.35);letter-spacing:0.05em;}
+@media(max-width:700px){.layout{flex-direction:column;}.sidebar{width:100%;position:static;}.filter-row{flex-direction:column;align-items:flex-start;}.search{width:100%;}}
+@media(max-width:560px){nav{padding:0.8rem 1rem;}.nav-links .nav-btn:not(.nav-btn--fill){display:none;}.page-hero{padding:1.5rem 1rem;}.main-wrap{padding:1.2rem 1rem 3rem;}}
+</style>
 </head>
 <body>
-
-<!-- ── NAV ── -->
-<nav class="nav">
-  <div class="container nav__inner">
-    <a href="index.html" class="nav__logo">Unfiltered<span>HR</span></a>
-    <ul class="nav__links">
-      <li><a href="community.html" style="color:var(--red); font-weight:500;">Community</a></li>
-      <li><a href="#">The Journal</a></li>
-      <li><a href="#">Playbooks</a></li>
-      <li><a href="#">The HR Files</a></li>
-      <li><a href="#">Newsletter</a></li>
-      <li><a class="soon" href="#">HR Tech</a></li>
-    </ul>
-    <div class="nav__cta">
-      <a href="#post-form" class="btn btn--primary">Post anonymously ↗</a>
-    </div>
+<nav>
+  <a href="index.html" class="logo">Unfiltered<span>HR</span></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="community.html" style="color:var(--red);border-color:var(--red)">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="#">Playbooks</a>
+    <a class="nav-btn" href="#">The HR Files</a>
+    <span class="soon">HR Tech ✦</span>
+    <a class="nav-btn nav-btn--fill" href="#post-form">Post anonymously ↗</a>
   </div>
 </nav>
 
-<!-- ── PAGE HERO ── -->
 <div class="page-hero">
-  <div class="container">
-    <div class="page-hero__inner">
-      <div class="fade-up">
-        <div class="page-hero__eyebrow">Community</div>
-        <h1 class="page-hero__title">
-          The honest conversation<br>
-          <em>HR has been missing.</em>
-        </h1>
-        <p class="page-hero__sub">
-          No accounts. No profiles. Just practitioners telling the truth — anonymously, always.
-        </p>
-      </div>
-    </div>
-  </div>
+  <div class="eyebrow">Community</div>
+  <h1 class="page-title">The honest conversation<br><em>HR has been missing.</em></h1>
+  <p class="page-sub">No accounts. No profiles. Just practitioners telling the truth — anonymously, always.</p>
 </div>
 
-<!-- ── MAIN LAYOUT ── -->
-<div class="container" style="padding-bottom: 80px;">
-  <div class="community-layout">
-
-    <!-- ── SIDEBAR ── -->
+<div class="main-wrap">
+  <div class="layout">
     <aside class="sidebar">
-      <div class="sidebar-card">
-        <div class="sidebar-card__header">Domains</div>
-        <div class="domain-nav-item active" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">🔥</span>
-          <span class="domain-nav-item__name">All domains</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">🎯</span>
-          <span class="domain-nav-item__name">Talent Acquisition</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">🌍</span>
-          <span class="domain-nav-item__name">Diversity &amp; Inclusion</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">🏡</span>
-          <span class="domain-nav-item__name">Culture</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">💡</span>
-          <span class="domain-nav-item__name">Engagement &amp; Retention</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">🧭</span>
-          <span class="domain-nav-item__name">Leadership</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">♟️</span>
-          <span class="domain-nav-item__name">Talent Strategy</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">📚</span>
-          <span class="domain-nav-item__name">Learning &amp; Dev</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">⚙️</span>
-          <span class="domain-nav-item__name">HR Operations</span>
-        </div>
-        <div class="domain-nav-item" onclick="selectDomain(this)">
-          <span class="domain-nav-item__icon">💻</span>
-          <span class="domain-nav-item__name">People Technology</span>
-        </div>
+      <div class="sb-card">
+        <div class="sb-head">Domains</div>
+        <div class="dn on" onclick="sd(this)"><span class="dn-icon">🔥</span>All domains</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">🎯</span>Talent Acquisition</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">🌍</span>Diversity &amp; Inclusion</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">🏡</span>Culture</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">💡</span>Engagement &amp; Retention</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">🧭</span>Leadership</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">♟️</span>Talent Strategy</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">📚</span>Learning &amp; Dev</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">⚙️</span>HR Operations</div>
+        <div class="dn" onclick="sd(this)"><span class="dn-icon">💻</span>People Technology</div>
       </div>
     </aside>
-
-    <!-- ── MAIN CONTENT ── -->
     <main>
-
-      <!-- Post form -->
-      <div id="post-form" class="ask-box" style="margin-bottom: 28px;">
-        <div class="ask-box__header">
-          <span class="ask-box__label">Start a Thread</span>
-          <span class="ask-box__note">🔒 Always anonymous</span>
+      <div id="post-form" class="ask-box">
+        <div class="ask-top">
+          <span class="ask-label">Start a Thread</span>
+          <span class="ask-note">🔒 Always anonymous</span>
         </div>
         <textarea placeholder="What's on your mind? Ask anything — no dumb questions here..."></textarea>
-        <div class="pill-group" style="margin-bottom: 16px;">
-          <button class="pill active" onclick="selectPill(this)">Talent</button>
-          <button class="pill" onclick="selectPill(this)">D&I</button>
-          <button class="pill" onclick="selectPill(this)">Culture</button>
-          <button class="pill" onclick="selectPill(this)">Engagement</button>
-          <button class="pill" onclick="selectPill(this)">Leadership</button>
-          <button class="pill" onclick="selectPill(this)">L&D</button>
-          <button class="pill" onclick="selectPill(this)">Ops</button>
-          <button class="pill" onclick="selectPill(this)">Tech</button>
+        <div class="pills">
+          <button class="pill on" onclick="p(this)">Talent</button>
+          <button class="pill" onclick="p(this)">D&I</button>
+          <button class="pill" onclick="p(this)">Culture</button>
+          <button class="pill" onclick="p(this)">Engagement</button>
+          <button class="pill" onclick="p(this)">Leadership</button>
+          <button class="pill" onclick="p(this)">L&D</button>
+          <button class="pill" onclick="p(this)">Ops</button>
+          <button class="pill" onclick="p(this)">Tech</button>
         </div>
-        <div class="ask-box__footer">
-          <span></span>
-          <button class="btn btn--primary">Post thread ↗</button>
+        <div class="ask-foot">
+          <button class="nav-btn nav-btn--fill" style="font-size:0.7rem">Post thread ↗</button>
         </div>
       </div>
-
-      <!-- Filter row -->
-      <div class="filter-row" style="margin-bottom: 20px;">
-        <div class="filter-tabs">
-          <div class="filter-tab active" onclick="switchTab(this)">Recent</div>
-          <div class="filter-tab" onclick="switchTab(this)">Hot</div>
-          <div class="filter-tab" onclick="switchTab(this)">Unanswered</div>
+      <div class="filter-row">
+        <div class="tabs">
+          <div class="tab on" onclick="t(this)">Recent</div>
+          <div class="tab" onclick="t(this)">Hot</div>
+          <div class="tab" onclick="t(this)">Unanswered</div>
         </div>
-        <input type="text" class="search-input" placeholder="Search threads..." />
+        <input class="search" type="text" placeholder="Search threads..."/>
       </div>
-
-      <!-- Empty state -->
-      <div style="text-align:center; padding: 64px 0; color: var(--grey-3);">
-        <div style="font-size: 2rem; margin-bottom: 14px;">💬</div>
-        <div style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--grey-2); margin-bottom: 8px;">No threads yet — be the first.</div>
-        <div style="font-size: 0.875rem; font-weight: 300;">Ask something real. Someone out there has been through it too.</div>
+      <div class="empty">
+        <div class="empty-icon">💬</div>
+        <div class="empty-title">No threads yet — be the first.</div>
+        <div class="empty-sub">Ask something real. Someone out there has been through it too.</div>
       </div>
-
     </main>
   </div>
 </div>
 
-<!-- ── FOOTER ── -->
 <footer>
-  <div class="container footer__inner">
-    <div class="footer__logo">Unfiltered<span>HR</span></div>
-    <ul class="footer__nav">
-      <li><a href="community.html">Community</a></li>
-      <li><a href="#">The Journal</a></li>
-      <li><a href="#">Playbooks</a></li>
-      <li><a href="#">The HR Files</a></li>
-      <li><a href="#">Newsletter</a></li>
-    </ul>
-    <div class="footer__copy">For the people behind the people · © 2026 UnfilteredHR</div>
-  </div>
+  <div class="foot-logo">Unfiltered<span>HR</span></div>
+  <ul class="foot-nav">
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#">The Journal</a></li>
+    <li><a href="#">Playbooks</a></li>
+    <li><a href="#">The HR Files</a></li>
+    <li><a href="#">Newsletter</a></li>
+  </ul>
+  <div class="foot-copy">For the people behind the people · © 2026 UnfilteredHR</div>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script>
+function p(el){el.closest('.pills').querySelectorAll('.pill').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
+function t(el){el.closest('.tabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
+function sd(el){document.querySelectorAll('.dn').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
+</script>
 </body>
 </html>
