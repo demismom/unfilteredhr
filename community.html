@@ -7,7 +7,7 @@
 <meta name="description" content="No accounts. No profiles. Just practitioners telling the truth — anonymously, always."/>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,400&display=swap" rel="stylesheet"/>
 <style>
 :root{--red:#FF4B33;--bg:#FAF9F7;--white:#FFFFFF;--dark:#1A1A1A;--mid:#555555;--muted:#999999;--faint:#CCCCCC;--border:#E8E6E2;--surface:#F4F2EF;}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -49,7 +49,8 @@ main{flex:1;min-width:0;}
 .pill{font-size:0.68rem;padding:0.25rem 0.7rem;border-radius:2px;border:1px solid var(--border);background:var(--white);color:var(--mid);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
 .pill:hover{border-color:var(--red);color:var(--red);}
 .pill.on{background:var(--red);border-color:var(--red);color:white;}
-.ask-foot{display:flex;justify-content:flex-end;}
+.ask-foot{display:flex;justify-content:flex-end;align-items:center;gap:0.8rem;}
+.post-error{font-size:0.72rem;color:var(--red);display:none;}
 .filter-row{display:flex;align-items:center;justify-content:space-between;gap:0.8rem;margin-bottom:1.2rem;}
 .tabs{display:flex;gap:0.25rem;background:var(--surface);border-radius:2px;padding:0.2rem;}
 .tab{font-size:0.72rem;padding:0.3rem 0.8rem;border-radius:2px;color:var(--muted);cursor:pointer;transition:all 0.15s;letter-spacing:0.04em;}
@@ -57,21 +58,46 @@ main{flex:1;min-width:0;}
 .search{padding:0.4rem 0.8rem;border:1px solid var(--border);border-radius:2px;font-size:0.78rem;color:var(--dark);background:white;outline:none;width:160px;font-family:'DM Sans',sans-serif;transition:border-color 0.15s;}
 .search:focus{border-color:var(--red);}
 .search::placeholder{color:var(--faint);}
+
+/* THREADS */
+.thread{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:1rem 1.2rem;margin-bottom:0.6rem;transition:all 0.15s;}
+.thread:hover{border-color:var(--red);}
+.thread-cat{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;}
+.thread-text{font-size:0.9rem;color:var(--dark);line-height:1.6;margin-bottom:0.8rem;}
+.thread-footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.thread-meta{font-size:0.68rem;color:var(--faint);}
+.thread-actions{display:flex;align-items:center;gap:0.8rem;}
+.like-btn{display:flex;align-items:center;gap:0.3rem;font-size:0.72rem;color:var(--muted);cursor:pointer;padding:0.2rem 0.5rem;border-radius:2px;transition:all 0.15s;border:1px solid transparent;}
+.like-btn:hover{color:var(--red);border-color:var(--red);}
+.like-btn.liked{color:var(--red);border-color:var(--red);}
+.comment-toggle{font-size:0.72rem;color:var(--muted);cursor:pointer;padding:0.2rem 0.5rem;border-radius:2px;border:1px solid transparent;transition:all 0.15s;}
+.comment-toggle:hover{color:var(--dark);border-color:var(--border);}
+
+/* COMMENTS */
+.comments-section{margin-top:0.8rem;padding-top:0.8rem;border-top:1px solid var(--surface);display:none;}
+.comments-section.open{display:block;}
+.comment{padding:0.6rem 0;border-bottom:1px solid var(--surface);font-size:0.82rem;color:var(--mid);line-height:1.5;}
+.comment:last-of-type{border-bottom:none;}
+.comment-meta{font-size:0.65rem;color:var(--faint);margin-bottom:0.2rem;}
+.comment-form{display:flex;gap:0.5rem;margin-top:0.8rem;}
+.comment-input{flex:1;padding:0.4rem 0.7rem;border:1px solid var(--border);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.8rem;color:var(--dark);outline:none;background:white;}
+.comment-input:focus{border-color:var(--red);}
+.comment-input::placeholder{color:var(--faint);}
+.comment-submit{padding:0.4rem 0.8rem;background:var(--dark);color:white;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;white-space:nowrap;transition:background 0.2s;}
+.comment-submit:hover{background:var(--red);}
+
 .empty{text-align:center;padding:4rem 0;color:var(--muted);}
 .empty-icon{font-size:1.4rem;margin-bottom:0.6rem;}
 .empty-title{font-family:'DM Sans',sans-serif;font-size:0.85rem;color:var(--mid);margin-bottom:0.3rem;}
 .empty-sub{font-size:0.8rem;}
+.loading{text-align:center;padding:2rem 0;color:var(--faint);font-size:0.85rem;}
+
 footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:auto;}
 .foot-logo{font-family:'DM Sans',sans-serif;font-size:1rem;letter-spacing:-0.01em;}
 .foot-logo span{color:var(--red);}
 .foot-nav{display:flex;gap:1.2rem;list-style:none;font-size:0.7rem;color:rgba(242,236,224,0.5);letter-spacing:0.06em;}
 .foot-nav a:hover{color:var(--red);}
 .foot-copy{font-size:0.65rem;color:rgba(242,236,224,0.35);letter-spacing:0.05em;}
-.thread{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:1rem 1.2rem;margin-bottom:0.6rem;cursor:pointer;transition:all 0.15s;}
-.thread:hover{border-color:var(--red);transform:translateY(-1px);}
-.thread-cat{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;}
-.thread-text{font-size:0.88rem;color:var(--dark);line-height:1.55;margin-bottom:0.5rem;}
-.thread-time{font-size:0.68rem;color:var(--faint);}
 @media(max-width:700px){.layout{flex-direction:column;}.sidebar{width:100%;position:static;}.filter-row{flex-direction:column;align-items:flex-start;}.search{width:100%;}}
 @media(max-width:560px){nav{padding:0.8rem 1rem;}.nav-links .nav-btn:not(.nav-btn--fill){display:none;}.page-hero{padding:1.5rem 1rem;}.main-wrap{padding:1.2rem 1rem 3rem;}}
 </style>
@@ -100,18 +126,19 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
     <aside class="sidebar">
       <div class="sb-card">
         <div class="sb-head">Domains</div>
-        <div class="dn on" onclick="sd(this)"><span class="dn-icon">🔥</span>All domains</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">🎯</span>Talent Acquisition</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">🌍</span>Diversity &amp; Inclusion</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">🏡</span>Culture</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">💡</span>Engagement &amp; Retention</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">🧭</span>Leadership</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">♟️</span>Talent Strategy</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">📚</span>Learning &amp; Dev</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">⚙️</span>HR Operations</div>
-        <div class="dn" onclick="sd(this)"><span class="dn-icon">💻</span>People Technology</div>
+        <div class="dn on" onclick="filterDomain(this,'')"><span class="dn-icon">🔥</span>All domains</div>
+        <div class="dn" onclick="filterDomain(this,'Talent Acquisition')"><span class="dn-icon">🎯</span>Talent Acquisition</div>
+        <div class="dn" onclick="filterDomain(this,'D&I')"><span class="dn-icon">🌍</span>Diversity &amp; Inclusion</div>
+        <div class="dn" onclick="filterDomain(this,'Culture')"><span class="dn-icon">🏡</span>Culture</div>
+        <div class="dn" onclick="filterDomain(this,'Engagement')"><span class="dn-icon">💡</span>Engagement</div>
+        <div class="dn" onclick="filterDomain(this,'Leadership')"><span class="dn-icon">🧭</span>Leadership</div>
+        <div class="dn" onclick="filterDomain(this,'Talent Strategy')"><span class="dn-icon">♟️</span>Talent Strategy</div>
+        <div class="dn" onclick="filterDomain(this,'L&D')"><span class="dn-icon">📚</span>Learning &amp; Dev</div>
+        <div class="dn" onclick="filterDomain(this,'HR Ops')"><span class="dn-icon">⚙️</span>HR Operations</div>
+        <div class="dn" onclick="filterDomain(this,'People Tech')"><span class="dn-icon">💻</span>People Technology</div>
       </div>
     </aside>
+
     <main>
       <div id="post-form" class="ask-box">
         <div class="ask-top">
@@ -131,19 +158,21 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
           <button class="pill" onclick="p(this)">People Tech</button>
         </div>
         <div class="ask-foot">
+          <span class="post-error" id="post-error">Please write something first!</span>
           <button class="nav-btn nav-btn--fill" style="font-size:0.7rem" onclick="postThread()">Post thread ↗</button>
         </div>
       </div>
+
       <div class="filter-row">
         <div class="tabs">
-          <div class="tab on" onclick="t(this)">Recent</div>
-          <div class="tab" onclick="t(this)">Hot</div>
-          <div class="tab" onclick="t(this)">Unanswered</div>
+          <div class="tab on" onclick="setSort(this,'new')">Recent</div>
+          <div class="tab" onclick="setSort(this,'liked')">Top</div>
         </div>
-        <input class="search" type="text" placeholder="Search threads..."/>
+        <input class="search" type="text" placeholder="Search threads..." oninput="renderThreads()"/>
       </div>
-      <div id="thread-list"></div>
-      <div class="empty" id="empty-state">
+
+      <div id="thread-list"><div class="loading">Loading threads...</div></div>
+      <div class="empty" id="empty-state" style="display:none;">
         <div class="empty-icon">💬</div>
         <div class="empty-title">No threads yet — be the first.</div>
         <div class="empty-sub">Ask something real. Someone out there has been through it too.</div>
@@ -165,56 +194,190 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
 </footer>
 
 <script>
-function p(el){el.closest('.pills').querySelectorAll('.pill').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
-function t(el){el.closest('.tabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));el.classList.add('on');renderThreads();}
-function sd(el){document.querySelectorAll('.dn').forEach(x=>x.classList.remove('on'));el.classList.add('on');renderThreads();}
+const SUPA_URL = 'https://wtqrutlsidjmtxohkhvv.supabase.co';
+const SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind0cXJ1dGxzaWRqbXR4b2hraHZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU4MTgwMjMsImV4cCI6MjA5MTM5NDAyM30.t6tp-r2aRTpQRWzydR3x8IsRmnqUIjbEL4qcryy2hb0';
 
-function timeAgo(iso){
-  const diff=Math.floor((Date.now()-new Date(iso))/1000);
-  if(diff<60)return'just now';
-  if(diff<3600)return Math.floor(diff/60)+'m ago';
-  if(diff<86400)return Math.floor(diff/3600)+'h ago';
-  return Math.floor(diff/86400)+'d ago';
+const headers = {
+  'Content-Type': 'application/json',
+  'apikey': SUPA_KEY,
+  'Authorization': 'Bearer ' + SUPA_KEY,
+  'Prefer': 'return=representation'
+};
+
+// Generate or retrieve anonymous user ID
+function getAnonId() {
+  let id = localStorage.getItem('uhr_anon_id');
+  if (!id) { id = 'anon_' + Math.random().toString(36).slice(2,10); localStorage.setItem('uhr_anon_id', id); }
+  return id;
 }
 
-function renderThreads(){
-  const threads=JSON.parse(localStorage.getItem('uhr_threads')||'[]');
-  const activeDomain=document.querySelector('.dn.on');
-  const domainFilter=activeDomain&&activeDomain.textContent.trim()!=='All domains'?activeDomain.textContent.trim():null;
-  const search=document.querySelector('.search').value.toLowerCase();
-  const filtered=threads.filter(th=>{
-    if(domainFilter&&!th.category.includes(domainFilter.split(' ')[0]))return false;
-    if(search&&!th.text.toLowerCase().includes(search))return false;
+function getLikes() { return JSON.parse(localStorage.getItem('uhr_likes') || '[]'); }
+function addLike(id) { const l = getLikes(); if (!l.includes(id)) { l.push(id); localStorage.setItem('uhr_likes', JSON.stringify(l)); } }
+function hasLiked(id) { return getLikes().includes(id); }
+
+let currentSort = 'new';
+let currentDomain = '';
+let allThreads = [];
+
+async function api(path, method='GET', body=null) {
+  const opts = { method, headers };
+  if (body) opts.body = JSON.stringify(body);
+  const res = await fetch(SUPA_URL + '/rest/v1/' + path, opts);
+  if (!res.ok) { const e = await res.text(); throw new Error(e); }
+  return method === 'GET' ? res.json() : res;
+}
+
+function timeAgo(iso) {
+  const diff = Math.floor((Date.now() - new Date(iso)) / 1000);
+  if (diff < 60) return 'just now';
+  if (diff < 3600) return Math.floor(diff/60) + 'm ago';
+  if (diff < 86400) return Math.floor(diff/3600) + 'h ago';
+  return Math.floor(diff/86400) + 'd ago';
+}
+
+async function loadThreads() {
+  try {
+    allThreads = await api('threads?select=*,comments(count)&order=created_at.desc');
+    renderThreads();
+  } catch(e) {
+    document.getElementById('thread-list').innerHTML = '<div class="loading">Could not load threads. Please try again.</div>';
+  }
+}
+
+function renderThreads() {
+  const search = document.querySelector('.search').value.toLowerCase();
+  let filtered = allThreads.filter(t => {
+    if (currentDomain && t.category !== currentDomain) return false;
+    if (search && !t.text.toLowerCase().includes(search)) return false;
     return true;
   });
-  const list=document.getElementById('thread-list');
-  const empty=document.getElementById('empty-state');
-  if(filtered.length===0){list.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  list.innerHTML=filtered.map(th=>`
-    <div class="thread">
-      <div class="thread-cat">${th.category}</div>
-      <div class="thread-text">${th.text}</div>
-      <div class="thread-time">${timeAgo(th.time)}</div>
+  if (currentSort === 'liked') filtered.sort((a,b) => b.likes - a.likes);
+  const list = document.getElementById('thread-list');
+  const empty = document.getElementById('empty-state');
+  if (filtered.length === 0) { list.innerHTML = ''; empty.style.display = 'block'; return; }
+  empty.style.display = 'none';
+  list.innerHTML = filtered.map(t => `
+    <div class="thread" id="thread-${t.id}">
+      <div class="thread-cat">${t.category}</div>
+      <div class="thread-text">${escHtml(t.text)}</div>
+      <div class="thread-footer">
+        <div class="thread-meta">Anonymous · ${timeAgo(t.created_at)}</div>
+        <div class="thread-actions">
+          <button class="like-btn ${hasLiked(t.id)?'liked':''}" onclick="likeThread('${t.id}',${t.likes})">
+            ♥ <span id="likes-${t.id}">${t.likes}</span>
+          </button>
+          <button class="comment-toggle" onclick="toggleComments('${t.id}')">
+            💬 <span id="ccount-${t.id}">${t.comments?.[0]?.count||0}</span>
+          </button>
+        </div>
+      </div>
+      <div class="comments-section" id="comments-${t.id}">
+        <div id="comments-list-${t.id}" class="loading" style="font-size:0.8rem">Loading...</div>
+        <div class="comment-form">
+          <input class="comment-input" id="comment-input-${t.id}" placeholder="Add a comment anonymously..." onkeydown="if(event.key==='Enter')submitComment('${t.id}')"/>
+          <button class="comment-submit" onclick="submitComment('${t.id}')">Reply</button>
+        </div>
+      </div>
     </div>
   `).join('');
 }
 
-function postThread(){
-  const text=document.getElementById('thread-text').value.trim();
-  if(!text){alert('Please write something first!');return;}
-  const cat=document.querySelector('#post-form .pill.on');
-  const category=cat?cat.textContent:'General';
-  const threads=JSON.parse(localStorage.getItem('uhr_threads')||'[]');
-  threads.unshift({id:Date.now(),text,category,time:new Date().toISOString()});
-  localStorage.setItem('uhr_threads',JSON.stringify(threads));
-  document.getElementById('thread-text').value='';
-  renderThreads();
-  document.getElementById('thread-list').scrollIntoView({behavior:'smooth'});
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
 
-document.querySelector('.search').addEventListener('input',renderThreads);
-renderThreads();
+async function likeThread(id, current) {
+  if (hasLiked(id)) return;
+  addLike(id);
+  const newCount = current + 1;
+  document.getElementById('likes-' + id).textContent = newCount;
+  document.querySelector(`#thread-${id} .like-btn`).classList.add('liked');
+  const t = allThreads.find(x => x.id === id);
+  if (t) t.likes = newCount;
+  try { await api(`threads?id=eq.${id}`, 'PATCH', { likes: newCount }); }
+  catch(e) { console.error('Like failed', e); }
+}
+
+async function toggleComments(id) {
+  const section = document.getElementById('comments-' + id);
+  section.classList.toggle('open');
+  if (section.classList.contains('open')) await loadComments(id);
+}
+
+async function loadComments(threadId) {
+  const el = document.getElementById('comments-list-' + threadId);
+  try {
+    const comments = await api(`comments?thread_id=eq.${threadId}&order=created_at.asc`);
+    if (comments.length === 0) { el.innerHTML = '<div style="font-size:0.8rem;color:var(--faint);padding:0.4rem 0">No comments yet — be the first.</div>'; return; }
+    el.innerHTML = comments.map(c => `
+      <div class="comment">
+        <div class="comment-meta">Anonymous · ${timeAgo(c.created_at)}</div>
+        ${escHtml(c.text)}
+      </div>
+    `).join('');
+  } catch(e) { el.innerHTML = '<div style="font-size:0.8rem;color:var(--faint)">Could not load comments.</div>'; }
+}
+
+async function submitComment(threadId) {
+  const input = document.getElementById('comment-input-' + threadId);
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  input.disabled = true;
+  try {
+    await api('comments', 'POST', { thread_id: threadId, text, anon_id: getAnonId() });
+    await loadComments(threadId);
+    // update comment count
+    const t = allThreads.find(x => x.id === threadId);
+    if (t) {
+      const count = parseInt(document.getElementById('ccount-' + threadId).textContent) + 1;
+      document.getElementById('ccount-' + threadId).textContent = count;
+    }
+  } catch(e) { alert('Could not post comment. Please try again.'); }
+  input.disabled = false;
+}
+
+async function postThread() {
+  const text = document.getElementById('thread-text').value.trim();
+  const errEl = document.getElementById('post-error');
+  if (!text) { errEl.style.display = 'block'; return; }
+  errEl.style.display = 'none';
+  const cat = document.querySelector('#post-form .pill.on');
+  const category = cat ? cat.textContent : 'General';
+  const btn = document.querySelector('#post-form .nav-btn--fill');
+  btn.textContent = 'Posting...';
+  btn.disabled = true;
+  try {
+    const res = await api('threads', 'POST', { text, category, anon_id: getAnonId(), likes: 0 });
+    document.getElementById('thread-text').value = '';
+    btn.textContent = 'Posted! ✓';
+    setTimeout(() => { btn.textContent = 'Post thread ↗'; btn.disabled = false; }, 2000);
+    await loadThreads();
+    document.getElementById('thread-list').scrollIntoView({ behavior: 'smooth' });
+  } catch(e) {
+    alert('Could not post thread. Please try again.');
+    btn.textContent = 'Post thread ↗';
+    btn.disabled = false;
+  }
+}
+
+function p(el) { el.closest('.pills').querySelectorAll('.pill').forEach(x => x.classList.remove('on')); el.classList.add('on'); }
+
+function setSort(el, sort) {
+  el.closest('.tabs').querySelectorAll('.tab').forEach(x => x.classList.remove('on'));
+  el.classList.add('on');
+  currentSort = sort;
+  renderThreads();
+}
+
+function filterDomain(el, domain) {
+  document.querySelectorAll('.dn').forEach(x => x.classList.remove('on'));
+  el.classList.add('on');
+  currentDomain = domain;
+  renderThreads();
+}
+
+loadThreads();
 </script>
 </body>
 </html>
