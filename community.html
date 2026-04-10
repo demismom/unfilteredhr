@@ -67,6 +67,11 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
 .foot-nav{display:flex;gap:1.2rem;list-style:none;font-size:0.7rem;color:rgba(242,236,224,0.5);letter-spacing:0.06em;}
 .foot-nav a:hover{color:var(--red);}
 .foot-copy{font-size:0.65rem;color:rgba(242,236,224,0.35);letter-spacing:0.05em;}
+.thread{background:var(--white);border:1px solid var(--border);border-radius:2px;padding:1rem 1.2rem;margin-bottom:0.6rem;cursor:pointer;transition:all 0.15s;}
+.thread:hover{border-color:var(--red);transform:translateY(-1px);}
+.thread-cat{font-size:0.58rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:0.4rem;}
+.thread-text{font-size:0.88rem;color:var(--dark);line-height:1.55;margin-bottom:0.5rem;}
+.thread-time{font-size:0.68rem;color:var(--faint);}
 @media(max-width:700px){.layout{flex-direction:column;}.sidebar{width:100%;position:static;}.filter-row{flex-direction:column;align-items:flex-start;}.search{width:100%;}}
 @media(max-width:560px){nav{padding:0.8rem 1rem;}.nav-links .nav-btn:not(.nav-btn--fill){display:none;}.page-hero{padding:1.5rem 1rem;}.main-wrap{padding:1.2rem 1rem 3rem;}}
 </style>
@@ -113,19 +118,20 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
           <span class="ask-label">Start a Thread</span>
           <span class="ask-note">🔒 Always anonymous</span>
         </div>
-        <textarea placeholder="What's on your mind? Ask anything — no dumb questions here..."></textarea>
+        <textarea id="thread-text" placeholder="What's on your mind? Ask anything — no dumb questions here..."></textarea>
         <div class="pills">
-          <button class="pill on" onclick="p(this)">Talent</button>
+          <button class="pill on" onclick="p(this)">Talent Acquisition</button>
           <button class="pill" onclick="p(this)">D&I</button>
           <button class="pill" onclick="p(this)">Culture</button>
           <button class="pill" onclick="p(this)">Engagement</button>
           <button class="pill" onclick="p(this)">Leadership</button>
+          <button class="pill" onclick="p(this)">Talent Strategy</button>
           <button class="pill" onclick="p(this)">L&D</button>
-          <button class="pill" onclick="p(this)">Ops</button>
-          <button class="pill" onclick="p(this)">Tech</button>
+          <button class="pill" onclick="p(this)">HR Ops</button>
+          <button class="pill" onclick="p(this)">People Tech</button>
         </div>
         <div class="ask-foot">
-          <button class="nav-btn nav-btn--fill" style="font-size:0.7rem">Post thread ↗</button>
+          <button class="nav-btn nav-btn--fill" style="font-size:0.7rem" onclick="postThread()">Post thread ↗</button>
         </div>
       </div>
       <div class="filter-row">
@@ -136,7 +142,8 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
         </div>
         <input class="search" type="text" placeholder="Search threads..."/>
       </div>
-      <div class="empty">
+      <div id="thread-list"></div>
+      <div class="empty" id="empty-state">
         <div class="empty-icon">💬</div>
         <div class="empty-title">No threads yet — be the first.</div>
         <div class="empty-sub">Ask something real. Someone out there has been through it too.</div>
@@ -159,8 +166,55 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
 
 <script>
 function p(el){el.closest('.pills').querySelectorAll('.pill').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
-function t(el){el.closest('.tabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
-function sd(el){document.querySelectorAll('.dn').forEach(x=>x.classList.remove('on'));el.classList.add('on')}
+function t(el){el.closest('.tabs').querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));el.classList.add('on');renderThreads();}
+function sd(el){document.querySelectorAll('.dn').forEach(x=>x.classList.remove('on'));el.classList.add('on');renderThreads();}
+
+function timeAgo(iso){
+  const diff=Math.floor((Date.now()-new Date(iso))/1000);
+  if(diff<60)return'just now';
+  if(diff<3600)return Math.floor(diff/60)+'m ago';
+  if(diff<86400)return Math.floor(diff/3600)+'h ago';
+  return Math.floor(diff/86400)+'d ago';
+}
+
+function renderThreads(){
+  const threads=JSON.parse(localStorage.getItem('uhr_threads')||'[]');
+  const activeDomain=document.querySelector('.dn.on');
+  const domainFilter=activeDomain&&activeDomain.textContent.trim()!=='All domains'?activeDomain.textContent.trim():null;
+  const search=document.querySelector('.search').value.toLowerCase();
+  const filtered=threads.filter(th=>{
+    if(domainFilter&&!th.category.includes(domainFilter.split(' ')[0]))return false;
+    if(search&&!th.text.toLowerCase().includes(search))return false;
+    return true;
+  });
+  const list=document.getElementById('thread-list');
+  const empty=document.getElementById('empty-state');
+  if(filtered.length===0){list.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  list.innerHTML=filtered.map(th=>`
+    <div class="thread">
+      <div class="thread-cat">${th.category}</div>
+      <div class="thread-text">${th.text}</div>
+      <div class="thread-time">${timeAgo(th.time)}</div>
+    </div>
+  `).join('');
+}
+
+function postThread(){
+  const text=document.getElementById('thread-text').value.trim();
+  if(!text){alert('Please write something first!');return;}
+  const cat=document.querySelector('#post-form .pill.on');
+  const category=cat?cat.textContent:'General';
+  const threads=JSON.parse(localStorage.getItem('uhr_threads')||'[]');
+  threads.unshift({id:Date.now(),text,category,time:new Date().toISOString()});
+  localStorage.setItem('uhr_threads',JSON.stringify(threads));
+  document.getElementById('thread-text').value='';
+  renderThreads();
+  document.getElementById('thread-list').scrollIntoView({behavior:'smooth'});
+}
+
+document.querySelector('.search').addEventListener('input',renderThreads);
+renderThreads();
 </script>
 </body>
 </html>
