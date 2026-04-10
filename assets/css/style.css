@@ -353,22 +353,22 @@ textarea, input { font-family: var(--font-body); }
   background: var(--white);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 18px 20px;
+  padding: 16px 18px;
   cursor: pointer;
   transition: all 0.18s;
+  min-height: unset;
 }
 .domain-card:hover {
   border-color: var(--red);
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
-.domain-card__icon { font-size: 1.5rem; margin-bottom: 10px; display: block; }
+.domain-card__icon { font-size: 1.25rem; margin-bottom: 8px; display: block; }
 .domain-card__name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   color: var(--grey-1);
-  margin-bottom: 6px;
   line-height: 1.3;
 }
 .domain-card__stats {
@@ -861,12 +861,12 @@ footer {
    HOMEPAGE HERO
    ───────────────────────────────────────────── */
 .hero {
-  padding: 64px 0 56px;
+  padding: 44px 0 36px;
 }
 .hero__inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  gap: 40px;
   align-items: center;
 }
 .hero__badge {
@@ -885,11 +885,11 @@ footer {
 .hero__headline {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   letter-spacing: -0.03em;
-  line-height: 1.05;
+  line-height: 1.08;
   color: var(--grey-1);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 .hero__headline em {
   font-style: italic;
@@ -927,8 +927,8 @@ footer {
 /* ─────────────────────────────────────────────
    SECTION SPACING
    ───────────────────────────────────────────── */
-.section { padding: 56px 0; }
-.section--tight { padding: 40px 0; }
+.section { padding: 40px 0; }
+.section--tight { padding: 28px 0; }
 .section + .section { padding-top: 0; }
 
 /* ─────────────────────────────────────────────
@@ -950,8 +950,8 @@ footer {
    RESPONSIVE (basic)
    ───────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .hero__inner { grid-template-columns: 1fr; gap: 36px; }
-  .hero__headline { font-size: 2.5rem; }
+  .hero__inner { grid-template-columns: 1fr; gap: 28px; }
+  .hero__headline { font-size: 2rem; }
   .domain-grid { grid-template-columns: repeat(2, 1fr); }
   .playbooks-grid { grid-template-columns: 1fr; }
   .community-layout { grid-template-columns: 1fr; }
