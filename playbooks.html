@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Playbooks — UnfilteredHR</title>
+<meta name="description" content="Practitioner-built HR playbooks. Ready to use, no consultant required."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet"/>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<style>
+:root{--red:#FF4B33;--bg:#FAF9F7;--white:#FFFFFF;--dark:#1A1A1A;--mid:#555555;--muted:#999999;--faint:#CCCCCC;--border:#E8E6E2;--surface:#F4F2EF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--dark);font-family:'DM Sans',sans-serif;font-weight:400;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;gap:0.5rem;flex-wrap:wrap;}
+.logo{font-family:'DM Sans',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;color:var(--dark);}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:0.5rem;align-items:center;}
+.nav-btn{padding:0.4rem 0.9rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.2s;background:none;border:1px solid var(--border);color:var(--mid);text-decoration:none;display:inline-block;}
+.nav-btn:hover{border-color:var(--red);color:var(--red);}
+.nav-btn--fill{background:var(--red);color:white;border-color:var(--red);font-weight:600;}
+.nav-btn--fill:hover{background:#e63d26;border-color:#e63d26;color:white;}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:20px;height:2px;background:var(--dark);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;gap:0.4rem;width:100%;padding-top:0.6rem;border-top:1px solid var(--border);}
+.mobile-menu.open{display:flex;}
+.mobile-menu .nav-btn{text-align:center;width:100%;}
+
+.page-hero{padding:3rem 2rem 2.5rem;border-bottom:1px solid var(--border);max-width:1100px;margin:0 auto;width:100%;}
+.eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;color:var(--red);margin-bottom:0.7rem;}
+.page-title{font-size:2.2rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--dark);margin-bottom:0.8rem;}
+.page-sub{font-size:0.95rem;color:var(--muted);line-height:1.7;max-width:540px;}
+
+.main-wrap{flex:1;max-width:1100px;margin:0 auto;padding:2.5rem 2rem 5rem;width:100%;}
+
+/* PRODUCT CARDS */
+.playbook-grid{display:flex;flex-direction:column;gap:1rem;}
+.pb-card{background:white;border:1px solid var(--border);border-radius:2px;padding:1.8rem 2rem;display:flex;align-items:center;gap:2rem;transition:all 0.18s;}
+.pb-card:hover{border-color:var(--red);box-shadow:0 4px 20px rgba(0,0,0,0.06);}
+.pb-card.coming-soon{opacity:0.5;pointer-events:none;}
+.pb-icon-wrap{width:56px;height:56px;background:var(--surface);border-radius:2px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0;}
+.pb-info{flex:1;min-width:0;}
+.pb-eyebrow{font-size:0.6rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--muted);margin-bottom:0.3rem;}
+.pb-name{font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:0.4rem;letter-spacing:-0.01em;}
+.pb-desc{font-size:0.85rem;color:var(--muted);line-height:1.55;}
+.pb-right{display:flex;flex-direction:column;align-items:flex-end;gap:0.8rem;flex-shrink:0;}
+.pb-price{font-size:1.3rem;font-weight:700;color:var(--dark);}
+.pb-price.soon{font-size:0.78rem;color:var(--faint);font-weight:500;}
+.pb-buy-btn{padding:0.6rem 1.2rem;background:var(--red);color:white;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:600;letter-spacing:0.04em;cursor:pointer;white-space:nowrap;transition:background 0.2s;text-decoration:none;display:inline-block;}
+.pb-buy-btn:hover{background:#e63d26;}
+.pb-learn-btn{padding:0.6rem 1.2rem;border:1px solid var(--border);color:var(--mid);border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.78rem;font-weight:500;cursor:pointer;white-space:nowrap;transition:all 0.2s;text-decoration:none;display:inline-block;}
+.pb-learn-btn:hover{border-color:var(--red);color:var(--red);}
+.pb-btn-row{display:flex;gap:0.5rem;}
+
+footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:auto;}
+.foot-logo{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;}
+.foot-logo span{color:var(--red);}
+.foot-nav{display:flex;gap:1.2rem;list-style:none;font-size:0.7rem;font-weight:500;color:rgba(242,236,224,0.5);}
+.foot-nav a:hover{color:var(--red);}
+.foot-copy{font-size:0.65rem;color:rgba(242,236,224,0.35);}
+
+@media(max-width:760px){.nav-links{display:none;}.hamburger{display:flex;}}
+@media(max-width:600px){.pb-card{flex-direction:column;align-items:flex-start;gap:1rem;}.pb-right{align-items:flex-start;}.main-wrap{padding:1.5rem 1rem 3rem;}.page-hero{padding:2rem 1rem;}}
+@media(max-width:560px){nav{padding:0.8rem 1rem;flex-wrap:wrap;}footer{flex-direction:column;align-items:flex-start;gap:0.8rem;padding:1.2rem 1rem;}.foot-nav{flex-wrap:wrap;gap:0.6rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Unfiltered<span>HR</span></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="community.html">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="playbooks.html" style="color:var(--red);border-color:var(--red)">Playbooks</a>
+    <a class="nav-btn" href="hr-files.html">The HR Files</a>
+    <a class="nav-btn nav-btn--fill" href="community.html">Post anonymously ↗</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="nav-btn" href="community.html">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="playbooks.html">Playbooks</a>
+    <a class="nav-btn" href="hr-files.html">The HR Files</a>
+    <a class="nav-btn nav-btn--fill" href="community.html">Post anonymously ↗</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="eyebrow">Practitioner Playbooks</div>
+  <h1 class="page-title">Tools built by HR, for HR.</h1>
+  <p class="page-sub">No consultants. No fluff. Just practical, ready-to-use resources built by practitioners who've been in the room.</p>
+</div>
+
+<div class="main-wrap">
+  <div class="playbook-grid">
+
+    <!-- LIVE PRODUCT -->
+    <div class="pb-card">
+      <div class="pb-icon-wrap">📊</div>
+      <div class="pb-info">
+        <div class="pb-eyebrow">Employee Engagement</div>
+        <div class="pb-name">Engagement Survey Question Bank</div>
+        <div class="pb-desc">100+ practitioner-built survey questions organised by theme. Ready to copy, adapt, and use — pulse, quarterly, and annual versions included.</div>
+      </div>
+      <div class="pb-right">
+        <div class="pb-price">$29</div>
+        <div class="pb-btn-row">
+          <a class="pb-learn-btn" href="playbook-question-bank.html">Learn more</a>
+          <a class="pb-buy-btn" href="https://unfilteredhr.gumroad.com/l/ee-question-bank" data-gumroad-overlay-checkout="true">Buy now ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMING SOON -->
+    <div class="pb-card coming-soon">
+      <div class="pb-icon-wrap">🗺️</div>
+      <div class="pb-info">
+        <div class="pb-eyebrow">Employee Engagement</div>
+        <div class="pb-name">Engagement Practitioner Guide</div>
+        <div class="pb-desc">A complete guide to designing, running, and acting on employee engagement surveys. From launch to debrief.</div>
+      </div>
+      <div class="pb-right">
+        <div class="pb-price soon">Coming soon</div>
+      </div>
+    </div>
+
+    <div class="pb-card coming-soon">
+      <div class="pb-icon-wrap">🧰</div>
+      <div class="pb-info">
+        <div class="pb-eyebrow">Culture</div>
+        <div class="pb-name">Culture Onboarding Toolkit</div>
+        <div class="pb-desc">Everything you need to onboard new hires into your culture — not just your processes. Templates, facilitation guides, and conversation frameworks.</div>
+      </div>
+      <div class="pb-right">
+        <div class="pb-price soon">Coming soon</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <div class="foot-logo">Unfiltered<span>HR</span></div>
+  <ul class="foot-nav">
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#">The Journal</a></li>
+    <li><a href="playbooks.html">Playbooks</a></li>
+    <li><a href="hr-files.html">The HR Files</a></li>
+    <li><a href="#">Newsletter</a></li>
+  </ul>
+  <div class="foot-copy">For the people behind the people · © 2026 UnfilteredHR</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+</script>
+</body>
+</html>

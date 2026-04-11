@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Engagement Survey Question Bank — UnfilteredHR Playbooks</title>
+<meta name="description" content="A practitioner-built bank of employee engagement survey questions. Skip the guesswork — 100+ questions organised by theme, ready to use."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet"/>
+<script src="https://gumroad.com/js/gumroad.js"></script>
+<style>
+:root{--red:#FF4B33;--bg:#FAF9F7;--white:#FFFFFF;--dark:#1A1A1A;--mid:#555555;--muted:#999999;--faint:#CCCCCC;--border:#E8E6E2;--surface:#F4F2EF;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--dark);font-family:'DM Sans',sans-serif;font-weight:400;min-height:100vh;display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;}
+a{color:inherit;text-decoration:none;}
+button{cursor:pointer;border:none;background:none;font-family:'DM Sans',sans-serif;}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:100;gap:0.5rem;flex-wrap:wrap;}
+.logo{font-family:'DM Sans',sans-serif;font-size:1.2rem;font-weight:700;letter-spacing:-0.02em;color:var(--dark);}
+.logo span{color:var(--red);}
+.nav-links{display:flex;gap:0.5rem;align-items:center;}
+.nav-btn{padding:0.4rem 0.9rem;font-family:'DM Sans',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;border-radius:2px;transition:all 0.2s;background:none;border:1px solid var(--border);color:var(--mid);text-decoration:none;display:inline-block;}
+.nav-btn:hover{border-color:var(--red);color:var(--red);}
+.nav-btn--fill{background:var(--red);color:white;border-color:var(--red);font-weight:600;}
+.nav-btn--fill:hover{background:#e63d26;border-color:#e63d26;color:white;}
+.hamburger{display:none;flex-direction:column;gap:4px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:20px;height:2px;background:var(--dark);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;gap:0.4rem;width:100%;padding-top:0.6rem;border-top:1px solid var(--border);}
+.mobile-menu.open{display:flex;}
+.mobile-menu .nav-btn{text-align:center;width:100%;}
+
+/* BREADCRUMB */
+.breadcrumb{max-width:1100px;margin:0 auto;width:100%;padding:1rem 2rem 0;font-size:0.75rem;color:var(--faint);}
+.breadcrumb a{color:var(--muted);transition:color 0.15s;}
+.breadcrumb a:hover{color:var(--red);}
+.breadcrumb span{margin:0 0.4rem;}
+
+/* MAIN LAYOUT */
+.main{flex:1;max-width:1100px;margin:0 auto;padding:2rem 2rem 5rem;width:100%;display:flex;gap:3rem;align-items:flex-start;}
+
+/* LEFT — product info */
+.product-col{flex:1;min-width:0;}
+.product-eyebrow{font-size:0.65rem;font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--red);margin-bottom:0.7rem;}
+.product-title{font-size:2.2rem;font-weight:700;letter-spacing:-0.02em;line-height:1.1;color:var(--dark);margin-bottom:1rem;}
+.product-sub{font-size:1rem;color:var(--muted);line-height:1.7;margin-bottom:2rem;}
+
+/* WHAT'S INCLUDED */
+.included-title{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark);margin-bottom:1rem;}
+.included-list{list-style:none;display:flex;flex-direction:column;gap:0.6rem;margin-bottom:2rem;}
+.included-list li{display:flex;align-items:flex-start;gap:0.7rem;font-size:0.9rem;color:var(--mid);line-height:1.5;}
+.check{width:18px;height:18px;background:var(--red);border-radius:2px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.check::after{content:'✓';color:white;font-size:0.65rem;font-weight:700;}
+
+/* WHO IT'S FOR */
+.for-section{background:var(--surface);border-radius:2px;padding:1.4rem 1.6rem;margin-bottom:2rem;}
+.for-title{font-size:0.72rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--dark);margin-bottom:0.8rem;}
+.for-list{list-style:none;display:flex;flex-direction:column;gap:0.4rem;}
+.for-list li{font-size:0.88rem;color:var(--mid);display:flex;align-items:center;gap:0.5rem;}
+.for-list li::before{content:'→';color:var(--red);font-weight:600;}
+
+/* FORMAT */
+.format-row{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2rem;}
+.format-tag{display:flex;align-items:center;gap:0.4rem;font-size:0.78rem;color:var(--mid);background:white;border:1px solid var(--border);border-radius:2px;padding:0.4rem 0.8rem;}
+.format-icon{font-size:1rem;}
+
+/* RIGHT — buy card */
+.buy-col{width:300px;flex-shrink:0;position:sticky;top:80px;}
+.buy-card{background:white;border:1px solid var(--border);border-radius:2px;padding:1.6rem;box-shadow:0 2px 16px rgba(0,0,0,0.06);}
+.buy-price{font-size:2.4rem;font-weight:700;color:var(--dark);letter-spacing:-0.02em;margin-bottom:0.3rem;}
+.buy-price span{font-size:1rem;font-weight:400;color:var(--muted);}
+.buy-note{font-size:0.78rem;color:var(--muted);margin-bottom:1.4rem;line-height:1.5;}
+.buy-btn{display:block;width:100%;padding:0.9rem;background:var(--red);color:white;border:none;border-radius:2px;font-family:'DM Sans',sans-serif;font-size:0.9rem;font-weight:600;letter-spacing:0.04em;cursor:pointer;text-align:center;transition:background 0.2s;margin-bottom:0.8rem;}
+.buy-btn:hover{background:#e63d26;}
+.buy-divider{border:none;border-top:1px solid var(--border);margin:1.2rem 0;}
+.buy-includes{list-style:none;display:flex;flex-direction:column;gap:0.5rem;}
+.buy-includes li{font-size:0.78rem;color:var(--muted);display:flex;align-items:center;gap:0.5rem;}
+.buy-includes li::before{content:'✓';color:var(--red);font-weight:700;}
+
+/* BACK LINK */
+.back-link{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.78rem;color:var(--muted);margin-bottom:1.5rem;transition:color 0.15s;}
+.back-link:hover{color:var(--red);}
+
+footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:auto;}
+.foot-logo{font-family:'DM Sans',sans-serif;font-size:1rem;font-weight:700;}
+.foot-logo span{color:var(--red);}
+.foot-nav{display:flex;gap:1.2rem;list-style:none;font-size:0.7rem;font-weight:500;color:rgba(242,236,224,0.5);}
+.foot-nav a:hover{color:var(--red);}
+.foot-copy{font-size:0.65rem;color:rgba(242,236,224,0.35);}
+
+@media(max-width:760px){.nav-links{display:none;}.hamburger{display:flex;}}
+@media(max-width:700px){.main{flex-direction:column;}.buy-col{width:100%;position:static;}.product-title{font-size:1.7rem;}}
+@media(max-width:560px){nav{padding:0.8rem 1rem;flex-wrap:wrap;}.main{padding:1.5rem 1rem 3rem;}.breadcrumb{padding:0.8rem 1rem 0;}footer{flex-direction:column;align-items:flex-start;gap:0.8rem;padding:1.2rem 1rem;}.foot-nav{flex-wrap:wrap;gap:0.6rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">Unfiltered<span>HR</span></a>
+  <div class="nav-links">
+    <a class="nav-btn" href="community.html">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="playbooks.html" style="color:var(--red);border-color:var(--red)">Playbooks</a>
+    <a class="nav-btn" href="hr-files.html">The HR Files</a>
+    <a class="nav-btn nav-btn--fill" href="community.html">Post anonymously ↗</a>
+  </div>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a class="nav-btn" href="community.html">Community</a>
+    <a class="nav-btn" href="#">The Journal</a>
+    <a class="nav-btn" href="playbooks.html">Playbooks</a>
+    <a class="nav-btn" href="hr-files.html">The HR Files</a>
+    <a class="nav-btn nav-btn--fill" href="community.html">Post anonymously ↗</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="index.html">Home</a><span>›</span>
+  <a href="playbooks.html">Playbooks</a><span>›</span>
+  Engagement Survey Question Bank
+</div>
+
+<div class="main">
+
+  <!-- LEFT -->
+  <div class="product-col">
+    <a href="playbooks.html" class="back-link">← Back to Playbooks</a>
+    <div class="product-eyebrow">Practitioner Playbook · Employee Engagement</div>
+    <h1 class="product-title">Engagement Survey Question Bank</h1>
+    <p class="product-sub">Stop staring at a blank survey builder. This is a practitioner-built bank of employee engagement questions — organised by theme, ready to copy, adapt, and use. Built from real HR experience, not a consultant's template.</p>
+
+    <div class="included-title">What's included</div>
+    <ul class="included-list">
+      <li><span class="check"></span>100+ survey questions organised by theme — engagement, manager effectiveness, culture, wellbeing, belonging, growth, and more</li>
+      <li><span class="check"></span>Question variations for different survey lengths — pulse, quarterly, and annual</li>
+      <li><span class="check"></span>Likert scale and open-text question options throughout</li>
+      <li><span class="check"></span>Notes on what each question is actually measuring and why it matters</li>
+      <li><span class="check"></span>Tips on question ordering and how to avoid leading or biased questions</li>
+      <li><span class="check"></span>Fully editable Word document — copy, adapt, make it yours</li>
+    </ul>
+
+    <div class="for-section">
+      <div class="for-title">Who this is for</div>
+      <ul class="for-list">
+        <li>HR practitioners building or refreshing an engagement survey from scratch</li>
+        <li>People teams who want better questions without hiring a consultant</li>
+        <li>HRBPs who need to move fast and need something ready to go</li>
+        <li>Anyone who's stared at a blank survey and thought "where do I even start"</li>
+      </ul>
+    </div>
+
+    <div class="included-title">Format</div>
+    <div class="format-row">
+      <div class="format-tag"><span class="format-icon">📝</span> Word Document (.docx)</div>
+      <div class="format-tag"><span class="format-icon">⚡</span> Instant download</div>
+      <div class="format-tag"><span class="format-icon">🔓</span> Fully editable</div>
+    </div>
+  </div>
+
+  <!-- RIGHT — BUY CARD -->
+  <div class="buy-col">
+    <div class="buy-card">
+      <div class="buy-price">$29 <span>USD</span></div>
+      <div class="buy-note">One-time purchase. Instant download. No subscription, no login required after purchase.</div>
+      <a class="buy-btn" href="https://unfilteredhr.gumroad.com/l/ee-question-bank" data-gumroad-overlay-checkout="true">Buy now — $29 ↗</a>
+      <hr class="buy-divider"/>
+      <ul class="buy-includes">
+        <li>100+ engagement questions</li>
+        <li>Organised by theme</li>
+        <li>Pulse, quarterly & annual versions</li>
+        <li>Fully editable Word doc</li>
+        <li>Instant download on purchase</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="foot-logo">Unfiltered<span>HR</span></div>
+  <ul class="foot-nav">
+    <li><a href="community.html">Community</a></li>
+    <li><a href="#">The Journal</a></li>
+    <li><a href="playbooks.html">Playbooks</a></li>
+    <li><a href="hr-files.html">The HR Files</a></li>
+    <li><a href="#">Newsletter</a></li>
+  </ul>
+  <div class="foot-copy">For the people behind the people · © 2026 UnfilteredHR</div>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('mobile-menu').classList.toggle('open');}
+</script>
+</body>
+</html>
