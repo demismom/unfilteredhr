@@ -301,7 +301,6 @@ async function loadHRFiles() {
           <div class="hr-story-text">"${escHtml(s.story)}"</div>
           <div class="hr-story-foot">
             <button class="hr-react-btn ${hasReacted(s.id)?'reacted':''}" id="react-${s.id}" onclick="reactToStory('${s.id}',${s.reactions},this)">❤️ ${s.reactions.toLocaleString()} felt this</button>
-            ${s.category?`<span style="font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--faint)">${s.category}</span>`:''}
           </div>
         </div>
       </div>
