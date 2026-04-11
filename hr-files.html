@@ -149,18 +149,6 @@ footer{background:var(--dark);color:#f2ece0;padding:1.8rem 2rem;display:flex;jus
           <input class="form-input" id="story-industry" type="text" placeholder="e.g. Tech, Healthcare..."/>
         </div>
 
-        <div class="form-group">
-          <label class="form-label">Category <span style="color:var(--faint);font-weight:400">(optional)</span></label>
-          <div class="pills">
-            <button class="pill" onclick="p(this)">Culture</button>
-            <button class="pill" onclick="p(this)">Leadership</button>
-            <button class="pill" onclick="p(this)">D&I</button>
-            <button class="pill" onclick="p(this)">Engagement</button>
-            <button class="pill" onclick="p(this)">Talent</button>
-            <button class="pill" onclick="p(this)">HR Ops</button>
-          </div>
-        </div>
-
         <button class="submit-btn" onclick="submitStory()">Submit anonymously ↗</button>
         <div class="form-note">🔒 Completely anonymous. No account, no email, no tracking. Your story, your call.</div>
       </div>
@@ -228,7 +216,6 @@ async function loadStories() {
           <div class="story-text">"${escHtml(s.story)}"</div>
           <div class="story-foot">
             <button class="react-btn ${hasReacted(s.id)?'reacted':''}" id="react-${s.id}" onclick="reactToStory('${s.id}',${s.reactions},this)">❤️ ${s.reactions.toLocaleString()} felt this</button>
-            ${s.category?`<span class="story-cat">${escHtml(s.category)}</span>`:''}
           </div>
         </div>
       </div>
@@ -257,15 +244,13 @@ async function submitStory() {
   if (!story) { document.getElementById('story-text').focus(); document.getElementById('story-text').style.borderColor = 'var(--red)'; return; }
   const role = document.getElementById('story-role').value.trim();
   const industry = document.getElementById('story-industry').value.trim();
-  const cat = document.querySelector('.submit-col .pill.on');
-  const category = cat ? cat.textContent : null;
   const btn = document.querySelector('.submit-btn');
   btn.textContent = 'Submitting...';
   btn.disabled = true;
   try {
     await fetch(SUPA_URL + '/rest/v1/hr_files', {
       method: 'POST', headers: {...HEADERS, 'Prefer':'return=representation'},
-      body: JSON.stringify({story, role:role||null, industry:industry||null, category, anon_id:getAnonId(), reactions:0})
+      body: JSON.stringify({story, role:role||null, industry:industry||null, anon_id:getAnonId(), reactions:0})
     });
     document.getElementById('form-card').style.display = 'none';
     document.getElementById('submit-success').style.display = 'block';
